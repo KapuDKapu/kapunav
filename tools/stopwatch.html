@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+
+        <!-- 内容部分 -->
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">秒表</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <center>
+                    <div class="box">
+                        <div id="showtime">
+                            <h2>
+                                <span>00</span>
+                                <span>:</span>
+                                <span>00</span>
+                                <span>:</span>
+                                <span>00</span>
+                            </h2>
+                        </div>
+                        <br>
+                        <div class="bnt">
+                            <button class="btn btn-info">记次</button>
+                            <button class="btn btn-info">启动</button>
+                        </div>
+                        <!--记录显示的次数-->
+                        <div id="record1">
+                            <!--/*<div>
+                    <span class="left">第一次记录:</span>
+                    <span class="right">00:00:00</span>
+                </div>*/-->
+                        </div><br>
+                        <div class="col-xs-12 col-md-6 col-md-offset-3">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>记录名称</th>
+                                        <th>记录时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="record">
+                                </tbody>
+                            </table>
+                        </div>
+                </center><br><br>
+            </div>
+            <div class="panel-footer">
+                秒表批量计次。
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+            console.log(data.text);
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+    <script>
+        //添加事件
+        $(function () {
+            var min = 0;
+            var sec = 0;
+            var ms = 0;
+            var timer = null;
+            var count = 0;
+            //点击第一个按钮
+            $('.bnt button:eq(0)').click(function () {
+                if ($(this).html() == '记次') {
+                    if (!timer) {
+                        //alert("没有开启定时器!");
+                        bootbox.alert("没有开启定时器!")
+                        return;
+                    }
+                    count++;
+                    //var right1 = "<span class='right'>" + $('#showtime').text() + "</span>";
+                    //var insertStr = "<div><span class='left'>记次" + count + "</span>" + right1 + "</div>";
+                    var right1 = "<td>" + $('#showtime').text() + "</td>";
+                    var left = "<td>" + "第" + count + "次</td>";
+                    var insertStr = "<tr>" + left + right1 + "</tr>";
+                    $("#record").prepend($(insertStr));
+    
+                } else {
+                    min = 0;
+                    sec = 0;
+                    ms = 0;
+                    count = 0;
+                    $('#showtime span:eq(0)').html('00');
+                    $('#showtime span:eq(2)').html('00');
+                    $('#showtime span:eq(4)').html('00');
+                    $('#record').html('');
+                }
+    
+            });
+            //点击第二个按钮
+            $('.bnt button:eq(1)').click(function () {
+                if ($(this).html() == '启动') {
+                    $(this).html('停止');
+                    $('.bnt button:eq(0)').html('记次');
+                    clearInterval(timer);
+                    timer = setInterval(show, 10)
+                } else {
+                    $(this).html('启动');
+                    $('.bnt button:eq(0)').html('复位');
+                    clearInterval(timer);
+                }
+            });
+            //生成时间
+            function show() {
+                ms++;
+                if (sec == 60) {
+                    min++; sec = 0;
+                }
+                if (ms == 100) {
+                    sec++; ms = 0;
+                }
+                var msStr = ms;
+                if (ms < 10) {
+                    msStr = "0" + ms;
+                }
+                var secStr = sec;
+                if (sec < 10) {
+                    secStr = "0" + sec;
+                }
+                var minStr = min;
+                if (min < 10) {
+                    minStr = "0" + min;
+                }
+                $('#showtime span:eq(0)').html(minStr);
+                $('#showtime span:eq(2)').html(secStr);
+                $('#showtime span:eq(4)').html(msStr);
+            }
+        })
+    </script>
+</body>
+
+</html>

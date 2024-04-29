@@ -91,18 +91,48 @@
             document.getElementById('hitokoto').innerHTML = data.text;
         });
     </script>
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+            console.log('333')
+            const hhttp = new XMLHttpRequest();
+            const urll = 'http://api.tanshuapi.com/api/youjia/v1/index?key=6efb96aade813e1bdd4986346ede61b8';
+            hhttp.open('GET',urll);
+            hhttp.send();
+            hhttp.onreadystatechange=(e)=>{
+                console.log('asdasdasd')
+                console.log(hhttp.responseText)
+            }
+        });
+    </script> -->
     <script type="text/javascript">
         $(document).ready(function () {
-            var urlurl = 'http://apis.juhe.cn/gnyj/query?=&key=3fd7342879eea79926b455f7e910136e';
+            console.log('fetch进入了');
+            const urll = 'http://api.tanshuapi.com/api/youjia/v1/index?key=6efb96aade813e1bdd4986346ede61b8';
+            const othepram = {
+                headers:{
+                    "Content-Type":"application/json; charset=utf-8",
+                    "Access-Control-Allow-Origin":"*"
+                },
+                method:"GET"
+            };
+            fetch(urll,othepram)
+            .then(data=>{
+                console.log('fffffffffff')
+                console.log(data.json())
+            })
+        });
+    </script>
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+            console.log('333')
             $.ajax({
                 type: "GET",
-                //async: false,
-                url: 'http://apis.juhe.cn/gnyj/query?=&key=3fd7342879eea79926b455f7e910136e',
-                dataType: "jsonp",//数据类型为jsonp  
-                //jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数
+                url: 'http://api.tanshuapi.com/api/youjia/v1/index?key=6efb96aade813e1bdd4986346ede61b8',
                 success: function (data) {
+                    console.log('111')
                     console.log(data);
                     alert(data);
+                    console.log('222')
                 },
                 error: function () {
                     alert('fail');
@@ -110,7 +140,7 @@
 
             })
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

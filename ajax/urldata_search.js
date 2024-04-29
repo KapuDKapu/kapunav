@@ -1,13 +1,3 @@
-// 整体思路如下
-// （1）页面加载时调用函数readexcel读取excel
-// （2）readexcel读取内容转化为数组，将数组赋值给addneirong
-// （3）addneirong里面调用的2个函数creativeurls、creativenav，分别生成侧边连和导航详细地址的html代码，然后将html代码插入到页面对应位置。
-
-
-// var changyongallurls = [
-// ['读取excel1111','读取excel（仅读取第一个sheet）1111','https://blog.haoji.me/js-excel.html','ico/flomo.png'],
-// ['读取excel2222','2222读取excel（仅读取第一个sheet）2222','https://blog.haoji.me/js-excel.html','ico/flomo.png']
-// ]
 
 //这是区分类别的html代码片段
 //var flhtml_changyong_begin = '<div class="d-flex flex-fill "><h4 class="text-gray text-lg mb-4"> <i class="site-tag iconfont icon-tag icon-lg mr-1" id="term-2"></i> '
@@ -33,23 +23,6 @@ var suozhang = '<h4 class="text-gray text-lg mb-4"> <i class="iconfont icon-book
 
 //网页收藏
 var lixianshoucang = '<li class="sidebar-item"><a href="./timeline/timeLine.html"><i class="iconfont icon-shoucang icon-fw icon-lg mr-2"></i><span>网页收藏</span></a></li>'
-
-
-
-//转化html--不读取excel--使用最上面常量的
-// function cyurls2html(changyongallurls) {
-// 	var res = changyongallurls.forEach(function (item, index, array) {
-// 		var u_name = item[0];
-// 		var u_url = item[2];
-// 		var u_ico = item[5];
-// 		//var u_ico = 'ico/flomo.png'
-// 		var u_miaoshu = item[1];
-// 		cotenthtml = u_name + "--------" + u_url + "--------" + u_miaoshu
-// 		cotenthtml = cotenthtml + url_begin + u_url + url_mid1 + u_ico + url_mid2 + u_name + url_mid3 + u_miaoshu + url_end;
-// 		var html = flhtml_changyong_begin + cotenthtml + flhtml_changyong_end;
-// 		return html;
-// 	})
-// }
 
 
 
@@ -96,7 +69,7 @@ function addneirong(changyongallurls, keykey) {
 
 
 //生成详细导航html的函数--区分类别
-function creativeurls(changyongallurls, keykey) {
+function creativeurls11(changyongallurls, keykey) {
 	console.log('key传到了内容里：' + keykey)
 	var html = ''
 	var onelb = ''
@@ -109,15 +82,18 @@ function creativeurls(changyongallurls, keykey) {
 	})
 	for (let i = 0; i < u_lbs.length; i++) {
 		// 遍历数组，对每个元素进行操作
-		onelb = flhtml_changyong_begin + u_lbs[i] + flhtml_changyong_mid0 + u_lbs[i] + flhtml_changyong_mid
+		onelb = flhtml_changyong_begin + '搜索结果' + flhtml_changyong_mid0 + '搜索结果' + flhtml_changyong_mid
 		var res = changyongallurls.forEach(function (item, index, array) {
-			if (item[4] == u_lbs[i] && item[3] == '是') {					//判断数组内是否存在这个类别
-				var u_name = item[0];
-				var u_url = item[2];
-				var u_ico = item[5];
-				var u_icoby = item[6];
-				var u_miaoshu = item[1];
-				onelb = onelb + url_begin + u_url + url_mid1 + u_miaoshu + url_mid5 + u_icoby + url_mid2 + u_ico + url_mid4 + u_name + url_mid3 + u_miaoshu + url_end;                            //类别去重，整理成一个数组
+			if (iitem[3] == '是') {		//if 判断  &&是且   ||是或			//判断数组内是否存在这个类别
+				if (item[0].indexOf(keykey) !== -1 || item[1].indexOf(keykey) !== -1) {
+					var u_name = item[0];
+					var u_url = item[2];
+					var u_ico = item[5];
+					var u_icoby = item[6];
+					var u_miaoshu = item[1];
+					onelb = onelb + url_begin + u_url + url_mid1 + u_miaoshu + url_mid5 + u_icoby + url_mid2 + u_ico + url_mid4 + u_name + url_mid3 + u_miaoshu + url_end;                            //类别去重，整理成一个数组
+				}
+
 			}
 
 		})
@@ -128,4 +104,34 @@ function creativeurls(changyongallurls, keykey) {
 	return html;
 }
 
+
+
+//生成详细导航html的函数--区分类别
+function creativeurls(changyongallurls, keykey) {
+	console.log('key传到了内容里：' + keykey)
+	var html = ''
+	var onelb = ''
+	var nav = ''
+	// 遍历数组，对每个元素进行操作
+	onelb = flhtml_changyong_begin + '搜索结果' + flhtml_changyong_mid0 + '搜索结果'+ flhtml_changyong_mid
+	var res = changyongallurls.forEach(function (item, index, array) {
+		if (item[3] == '是') {		//if 判断  &&是且   ||是或			//判断数组内是否存在这个类别
+			if (item[0].indexOf(keykey) !== -1 || item[1].indexOf(keykey) !== -1) {
+				var u_name = item[0];
+				var u_url = item[2];
+				var u_ico = item[5];
+				var u_icoby = item[6];
+				var u_miaoshu = item[1];
+				onelb = onelb + url_begin + u_url + url_mid1 + u_miaoshu + url_mid5 + u_icoby + url_mid2 + u_ico + url_mid4 + u_name + url_mid3 + u_miaoshu + url_end;                            //类别去重，整理成一个数组
+			}
+
+		}
+
+	})
+	onelb = onelb + flhtml_changyong_end
+	html = html + onelb
+
+	html = html + suozhang
+	return html;
+}
 
