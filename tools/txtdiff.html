@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="module/txtdiff/css/diffview.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+    <style>
+        @media screen and (max-width: 768px) {
+            .aaaa {
+                display: none;
+            }
+        }
+
+        .delete {
+            background-color: #ff7d84;
+        }
+
+        .insert {
+            background-color: #b6ffc3;
+        }
+
+        .replace {
+            background-color: #ff7d84;
+        }
+
+        td {
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">文本对比工具</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <h4>基础文本（Base Text）</h4><textarea id="baseText" class="form-control" rows="10"
+                            style="width:100%"></textarea>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <h4>对比文本（New Text）</h4><textarea id="newText" class="form-control" rows="10"
+                            style="width:100%"></textarea>
+                    </div>
+                </div>
+
+                <input type="hidden" id="contextSize" value="">
+
+                <br>
+                <center>
+                    查看方式：
+                    <div class="radio-inline">
+                        <input type="radio" id="sidebyside" value="option1" name="radioInline" checked>
+                        <label for="sidebyside"> 左右并排 </label>
+                    </div>
+                    <div class="radio-inline">
+                        <input type="radio" id="inline" value="option1" name="radioInline">
+                        <label for="inline"> 上下对比 </label>
+                    </div>
+
+
+                    &nbsp;&nbsp;
+                    <input class="btn btn-info" type="button" value="开始对比" onclick="javascript:diffUsingJS();"><br><br>
+                    <a name="diff"> </a>
+                </center>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div id="diffoutput" style="width:100%"> </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                对比文本差异并展示差异部分
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+    <script type="text/javascript" src="module//txtdiff/js/dojo.js"></script>
+    <script type="text/javascript" src="module//txtdiff/js/diffview.js"></script>
+    <script type="text/javascript" src="module//txtdiff/js/difflib.js"></script>
+    <script language="javascript">
+        var $ = dojo.byId;
+        dojo.require("dojo.io");
+        var url = window.location.toString().split("#")[0];
+        function diffUsingJS() {
+            var base = difflib.stringAsLines($("baseText").value);
+            var newtxt = difflib.stringAsLines($("newText").value);
+            var sm = new difflib.SequenceMatcher(base, newtxt);
+            var opcodes = sm.get_opcodes();
+            var diffoutputdiv = $("diffoutput");
+            while (diffoutputdiv.firstChild)
+                diffoutputdiv.removeChild(diffoutputdiv.firstChild);
+            var contextSize = $("contextSize").value;
+            contextSize = contextSize ? contextSize : null;
+            diffoutputdiv.appendChild(
+                diffview.buildView(
+                    {
+                        baseTextLines: base,
+                        newTextLines: newtxt,
+                        opcodes: opcodes,
+                        baseTextName: "基础文本",
+                        newTextName: "对比文本",
+                        contextSize: contextSize,
+                        //viewType: $("inline").checked ? 1 : 0
+                    }
+                )
+            );
+            window.location = url + "#diff";
+        }
+        function diffUsingPython() {
+            dojo.io.bind({
+                url: "/diff/postYieldDiffData",
+                method: "POST",
+                content: {
+                    baseText: $("baseText").value,
+                    newText: $("newText").value,
+                    ignoreWhitespace: "Y"
+                },
+                load: function (type, data, evt) {
+                    try {
+                        data = eval('(' + data + ')');
+                        while (diffoutputdiv.firstChild)
+                            diffoutputdiv.removeChild(diffoutputdiv.firstChild);
+                        $("output").appendChild(
+                            diffview.buildView({
+                                baseTextLines: data.baseTextLines,
+                                newTextLines: data.newTextLines,
+                                opcodes: data.opcodes,
+                                baseTextName: data.baseTextName,
+                                newTextName: data.newTextName,
+                                contextSize: contextSize
+                            }
+                            )
+                        );
+                    }
+                    catch (ex) {
+                        alert("An error occurred updating the diff view:\n" + ex.toString());
+                    }
+                },
+                error: function (type, evt) {
+                    alert('Error occurred getting diff data.  Check the server logs.');
+                },
+                type: 'text/javascript'
+            }
+            );
+        }
+    </script>
+    <script type="module">
+        import { faker } from 'https://esm.sh/@faker-js/faker';
+
+        // Caitlyn Kerluke
+        const randomName = faker.person.fullName();
+        console.log(randomName)
+
+        // Rusty@arne.info
+        const randomEmail = faker.internet.email();
+    </script>
+    <script type="text/javascript">
+        import { faker } from 'https://esm.sh/@faker-js/faker';
+        $(document).ready(function () {
+            const randomName = faker.person.fullName();
+            console.log(randomName)
+        });
+    </script>
+
+</body>
+
+</html>

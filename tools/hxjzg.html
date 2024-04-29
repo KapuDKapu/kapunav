@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+
+        <!-- 内容部分 -->
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">社会主义核心价值观加密/解密</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="col-xs-12 col-md-12">
+                    <textarea class="form-control" rows="3" id="befortext" name="befortext"
+                        style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
+                    <div class="col-xs-12 col-md-12" style="margin-bottom: 10px; padding-left: 0px;">
+                        <button class="btn btn-info" onclick="encode()">加密</button>
+                        <button class="btn btn-info" onclick="decode()">解密</button>
+                        <button class="btn btn-info" onclick="AjaxCopyText('aftertext')">复制加密数据</button>
+                        <button class="btn btn-info" onclick="AjaxCopyText('befortext')">复制解密数据</button>
+                    </div>
+                    <textarea class="form-control" rows="3" id="aftertext" name="aftertext"
+                        style="overflow-y:hidden"></textarea>
+                </div>
+            </div>
+            <div class="panel-footer">
+                社会主义核心价值观加密/解密
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+            console.log(data.text);
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+    <script>
+        //复制
+        function AjaxCopyText(idname) {
+            var name = $('#' + idname);
+            name.select();
+            document.execCommand("Copy");
+        }
+        function assert() {
+            for (var _len = arguments.length, express = Array(_len), _key = 0; _key < _len; _key++) {
+                express[_key] = arguments[_key];
+            }
+
+            var l = express.length;
+            var msg = typeof express[l - 1] === "string" ? express[l - 1] : "Assert Error";
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = express[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var b = _step.value;
+                    if (!b) {
+                        throw new Error(msg);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.
+                        return) {
+                        _iterator.
+                            return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+
+        function randBin() {
+            return Math.random() >= 0.5;
+        }
+
+        var values = "富强民主文明和谐自由平等公正法治爱国敬业诚信友善";
+
+        function str2utf8(str) {
+            var notEncoded = /[A-Za-z0-9\-\_\.\!\~\*\'\(\)]/g;
+            var str1 = str.replace(notEncoded, function (c) {
+                return c.codePointAt(0).toString(16);
+            });
+            var str2 = encodeURIComponent(str1);
+            var concated = str2.replace(/%/g, "").toUpperCase();
+            return concated;
+        }
+
+        function utf82str(utfs) {
+            assert(typeof utfs === "string", "utfs Error");
+            var l = utfs.length;
+
+            assert((l & 1) === 0);
+
+            var splited = [];
+
+            for (var i = 0; i < l; i++) {
+                if ((i & 1) === 0) {
+                    splited.push("%");
+                }
+                splited.push(utfs[i]);
+            }
+
+            return decodeURIComponent(splited.join(""));
+        }
+
+        function hex2duo(hexs) {
+            assert(typeof hexs === "string");
+
+            var duo = [];
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = hexs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var c = _step2.value;
+
+                    var n = Number.parseInt(c, 16);
+                    if (n < 10) {
+                        duo.push(n);
+                    } else {
+                        if (randBin()) {
+                            duo.push(10);
+                            duo.push(n - 10);
+                        } else {
+                            duo.push(11);
+                            duo.push(n - 6);
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.
+                        return) {
+                        _iterator2.
+                            return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+            return duo;
+        }
+
+        function duo2hex(duo) {
+            assert(duo instanceof Array);
+
+            var hex = [];
+
+            var l = duo.length;
+
+            var i = 0;
+
+            while (i < l) {
+                if (duo[i] < 10) {
+                    hex.push(duo[i]);
+                } else {
+                    if (duo[i] === 10) {
+                        i++;
+                        hex.push(duo[i] + 10);
+                    } else {
+                        i++;
+                        hex.push(duo[i] + 6);
+                    }
+                }
+                i++;
+            }
+            return hex.map(function (v) {
+                return v.toString(16).toUpperCase();
+            }).join("");
+        }
+
+        function duo2values(duo) {
+            return duo.map(function (d) {
+                return values[2 * d] + values[2 * d + 1];
+            }).join("");
+        }
+        //加密
+        function encode(params) {
+
+            var befortext = $('#befortext').val();
+            if (befortext == '') {
+                new $.zui.Messager('内容不允许为空！', {
+                    icon: 'bell' // 定义消息图标
+                }).show();
+            } else {
+                var after = duo2values(hex2duo(str2utf8(befortext)));
+                $("#aftertext").text(after);
+            }
+
+            //return duo2values(hex2duo(str2utf8(befortext)));
+
+        };
+        //解密
+        function decode(encoded) {
+            var aftertext = $('#aftertext').val();
+            var duo = [];
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+            if (aftertext == '') {
+                new $.zui.Messager('内容不允许为空！', {
+                    icon: 'bell' // 定义消息图标
+                }).show();
+            }
+            try {
+                for (var _iterator3 = aftertext[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var c = _step3.value;
+
+                    var i = values.indexOf(c);
+                    if (i === -1) {
+                        continue;
+                    } else if (i & 1) {
+                        continue;
+                    } else {
+                        duo.push(i >> 1);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.
+                        return) {
+                        _iterator3.
+                            return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
+            var hexs = duo2hex(duo);
+
+            assert((hexs.length & 1) === 0);
+
+            var str = void 0;
+            try {
+                str = utf82str(hexs);
+            } catch (e) {
+                throw e;
+            }
+            $("#befortext").text(str);
+            //return str;
+        };
+    </script>
+</body>
+
+</html>

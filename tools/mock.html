@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+    <style>
+        @media screen and (max-width: 768px) {
+            .aaaa {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">伪数据生成器</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="row">
+                    <div class="row">
+                       
+                        <div class="col-xs-12 col-md-12">
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="name">姓名</label>
+                                <div class="input-group">
+                                    <input id="name" name="name" type="text" class="form-control" placeholder="姓名">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateName()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('name')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="cardnumber">信用卡号</label>
+                                <div class="input-group">
+                                    <input id="cardnumber" name="cardnumber" type="text" class="form-control"
+                                        placeholder="信用卡号">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateCardNumber()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('cardnumber')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="ssn">身份证号</label>
+                                <div class="input-group">
+                                    <input id="ssn" name="ssn" type="text" class="form-control" placeholder="身份证号">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateSsn()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('ssn')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="phonenumber">手机号码</label>
+                                <div class="input-group">
+                                    <input id="phonenumber" name="phonenumber" type="text" class="form-control"
+                                        placeholder="手机号码">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreatePhoneNumber()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('phonenumber')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="company">公司名称</label>
+                                <div class="input-group">
+                                    <input id="company" name="company" type="text" class="form-control"
+                                        placeholder="公司名称">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateCompany()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('company')">复制</button>
+                                    </span>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="address">地址</label>
+                                <div class="input-group">
+                                    <input id="address" name="address" type="text" class="form-control"
+                                        placeholder="地址">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateAddress()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('address')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="email">邮箱</label>
+                                <div class="input-group">
+                                    <input id="email" name="email" type="text" class="form-control" placeholder="邮箱">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateEmail()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('email')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="uuid">UUID</label>
+                                <div class="input-group">
+                                    <input id="uuid" name="uuid" type="text" class="form-control" placeholder="UUID">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreateuuid()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('uuid')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="uuid">统一社会信用代码</label>
+                                <div class="input-group">
+                                    <input id="xycode" name="xycode" type="text" class="form-control"
+                                        placeholder="统一社会信用代码">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreatexycode()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('xycode')">复制</button>
+                                    </span>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-md-6" style="margin-top: 10px;">
+                                <label for="uuid">汽车牌照</label>
+                                <div class="input-group">
+                                    <input id="carcard" name="carcard" type="text" class="form-control"
+                                        placeholder="汽车牌照">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCreatecarcard()">生成</button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                            onclick="AjaxCopyText('carcard')">复制</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                随机生成伪数据用于开关及测试，请勿用于商业用途。
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+    <script type="text/javascript" src="module/mock-min.js"></script>
+    <script type="text/javascript" src="module/bcBuilder.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var randomName = Mock.mock('@cname');
+            var idid = Mock.mock('@id');
+        });
+    </script>
+    <script type="text/javascript">
+        function AjaxCreateName() {
+            $('#name').val(Mock.mock('@cname'));
+        }
+        function AjaxCreateCardNumber() {
+            $('#cardnumber').val(Mock.mock('@id'));
+        }
+        function AjaxCreateSsn() {
+            $('#ssn').val(Mock.mock('@id'));
+        }
+        function AjaxCreatePhoneNumber() {
+            $('#phonenumber').val(Mock.mock('@cname'));
+        }
+        function AjaxCreateCompany() {
+            $('#company').val(Mock.mock('@cname'));
+        }
+        function AjaxCreateEmail() {
+            $('#email').val(Mock.mock('@email'));
+        }
+        function AjaxCreateAddress() {
+            var name1 = ['大街', '街', '北街', '南街', '路', '东路', '西路', '大道'];
+            var name2 = ['大厦', '小区', '广场', '园区', '市场', '咨询中心', '店', '营业厅', '事务所', '美发店', '冲印店', '洗衣店', '公司', '电动自动车充电站', '体育场', '商店', '电影院', '专科医院', '专科医院', '医药保健销售店', '酒店', '宾馆', '招待所', '博物馆', '展览馆', '展览馆', '美术馆', '厂', '收费站', '服务区', '停车场', '汽车站', '档案馆']
+            detaldetail = Mock.mock('@county(true)') + ' ' + roadaddr() + name1[Math.floor(Math.random() * name1.length)] + ' ' + roadaddr() + name2[Math.floor(Math.random() * name2.length)]
+            $('#address').val(detaldetail);
+        }
+        function roadaddr() {
+            var zishu = [2, 3, 4]
+            var zi = zishu[Math.floor(Math.random() * zishu.length)]
+            var hanzi = ['系', '代', '加', '各', '很', '教', '新', '向', '机', '她', '内', '此', '老', '变', '原', '结', '问', '手', '日', '利', '质', '已', '最', '政', '儿', '见', '并', '平', '资', '比', '特', '果', '什', '建', '反', '常', '知', '第', '电', '思', '立', '提', '或', '通', '解', '身', '四', '品', '几', '位', '别', '论', '公', '给', '少', '条', '观', '回', '海', '基', '次', '被', '山', '才', '己', '期', '西', '术', '济', '认', '先', '命', '走', '真', '员', '及', '数', '话', '门', '级', '军', '统', '光', '声', '题', '入', '美', '口', '感', '战', '科', '程', '式', '指', '世', '必', '放', '打', '接', '总', '做', '东', '区', '农', '强', '造', '类', '受', '场', '五', '直', '月', '流', '决', '干', '则', '更', '色', '处', '路', '运', '任', '具', '目', '再', '治', '神', '求', '件', '管', '组', '根', '阶', '将', '改', '导', '眼', '规', '识', '革', '计', '白', '马', '金', '界', '取', '市', '设', '语', '完', '究', '党', '女', '传', '风', '信', '名', '便', '保', '育', '队', '带', '叫', '研', '领', '北', '较', '张', '即', '至', '许', '步', '往', '听', '调', '务', '花', '争', '线', '呢', '每', '边', '难', '太', '共', '交', '确', '劳', '据', '达', '住', '收', '候', '需', '转', '百', '南', '清', '格', '影', '书', '切', '且', '却', '志', '热', '联', '安', '极', '今', '单', '商', '料', '技', '深', '验', '增', '记', '近', '言', '整', '精', '集', '空', '连', '报', '觉', '车', '价', '音', '响', '办', '存', '怎', '病', '快', '图', '况', '例', '消', '容', '史', '非', '离', '节', '亲', '万', '八', '构', '族', '石', '满', '何', '广', '律', '青', '林', '克', '王', '历', '权', '素', '始', '断', '九', '际', '积', '吃', '态', '艺', '证', '众', '创', '红', '望', '须', '群', '师', '该', '复', '细', '包', '土', '持', '服', '笑', '德', '般', '远', '爱', '准', '写', '算', '火', '死', '半', '布', '随', '六', '元', '低', '称', '引', '照', '失', '养', '视', '习', '段', '字', '织', '斗', '团', '器', '兴', '乐', '效', '显', '斯', '千', '落', '示', '仅', '企', '似', '备', '除', '支', '标', '早', '吧', '周', '速', '跟', '七', '采', '状', '吗', '约', '城', '层', '专', '划', '轻', '拉', '值', '适', '英', '告', '讲', '维', '营', '士', '环', '古', '让', '院', '按', '型', '势', '足', '毛', '台', '紧', '片', '属', '严', '树', '画', '厂', '功', '注', '演', '源', '温', '某', '找', '参', '易', '飞', '推', '围', '列', '客', '河', '虽', '境', '食', '李', '尔', '黄', '黑', '念', '越', '选', '华', '角', '考', '致', '夫', '初', '装', '议', '首', '委', '底', '另', '江', '息', '密', '压', '孩', '村', '费', '局', '派', '房', '星', '突', '供', '曾', '排', '苦', '够', '像', '站', '校', '富', '谈', '米', '充', '阳', '破', '母', '球', '射', '批', '配', '纪', '未', '哪', '妈', '差', '刚', '率', '察', '舞', '依', '占', '呀', '微', '础', '益', '倒', '刻', '举', '血', '故', '互', '范', '木', '号', '尽', '请', '脸', '兵', '职', '留', '铁', '吸', '钱', '急', '独', '剧', '查', '皮', '激', '坐', '乎', '固', '害', '夜', '续', '京', '双', '拿', '府', '限', '草', '项', '述', '曲', '既', '春', '官', '坚', '令', '句', '助', '简', '杂', '材', '封', '护', '司', '省', '县', '模', '试', '绝', '洋', '谁', '继', '止', '喜', '优', '词', '陈', '鱼', '终', '施', '晚', '朝', '含', '仍', '脑', '甚', '汉', '修', '油', '衣', '击', '云', '送', '巴', '普', '征', '错', '均', '投', '波', '余', '友', '武', '责', '游', '敌', '叶', '船', '久', '否', '异', '块', '脚', '怕', '田', '策', '苏', '乡', '帝', '靠', '医', '测', '植', '啊', '括', '换', '逐', '娘', '罗', '戏', '善', '获', '待', '降', '冲', '父', '置', '左', '右', '沉', '酸', '亮', '良', '班', '著', '亚', '抗', '啦', '静', '渐', '概', '居', '跑', '旧', '防', '买', '挥', '负', '帮', '欢', '冷', '液', '停', '减', '男', '胜', '答', '析', '忙', '短', '烈', '映', '财', '背', '奇', '药', '承', '岁', '略', '穿', '牛', '室', '移', '饭', '坏', '假', '州', '缺', '愿', '练', '超', '雨', '慢', '竟', '呼', '散', '灵', '副', '歌', '谓', '虫', '读', '介', '培', '卫', '宗', '章', '评', '伤', '丰', '核', '预', '担', '诉', '惊', '刘', '景', '乱', '氧', '阿', '龙', '宣', '升', '爷', '洲', '判', '案', '协', '福', '货', '味', '若', '促', '希', '握', '端', '针', '屋', '掌', '检', '痛', '闻', '妇', '贵', '顾', '沙', '扩', '困', '哥', '嘴', '销', '印', '免', '烟', '跳', '香', '纸', '户', '板', '睛', '误', '探', '座', '盾', '灯', '搞', '祖', '顺', '婚', '赶', '季', '兰', '忽', '践', '熟', '矛', '银', '爸', '临', '佛', '犯', '胞', '讨', '陆', '补', '童', '圆', '归', '弟', '域', '索', '罪', '脱', '追', '守', '课', '顶', '松', '杀', '掉', '野', '训', '遍', '庭', '弱', '赛', '额', '酒', '绿', '席', '露', '卖', '钟', '旁', '肉', '央', '染', '欧', '怀', '稳', '伯', '编', '抓', '玉', '咱', '唯', '唱', '翻', '释', '控', '怪', '阵', '烧', '堂', '杨', '您', '诗', '灭', '夏', '敢', '退', '姑', '恶', '透', '鲜', '附', '骨', '审', '胡', '输', '宁', '丝', '姐', '彩', '睡', '巨', '迫', '鼓', '伙', '借', '耳', '典', '刺', '暗', '镜', '序', '哈', '菜', '溶', '笔', '汽', '礼', '摇', '迅', '险', '遗', '威', '沿', '弹', '私', '攻', '宝', '抽', '雪', '孙', '藏', '毒', '顿', '末', '摆', '趣', '救', '镇', '楼', '智', '园', '康', '永', '遇', '雄', '替', '危', '楚', '侵', '枪', '冰', '健', '播', '途']
+            addr = ''
+            for (var i = 0; i < zi; i++) {
+                addr = addr + hanzi[Math.floor(Math.random() * hanzi.length)]
+            }
+            return addr
+        }
+        function detaiaddr() {
+            var zishu = [2, 3, 4]
+            var zi = zishu[Math.floor(Math.random() * zishu.length)]
+            addr = ''
+            for (var i = 0; i < zi; i++) {
+                addr = addr + String.fromCharCode(Math.floor(Math.random() * (0x9FA5 - 0x4E00 + 1)) + 0x4E00);
+            }
+            var name = ['大厦', '小区', '广场', '园区', '市场', '咨询中心', '店', '营业厅', '事务所', '美发店', '冲印店', '洗衣店', '公司', '电动自动车充电站', '体育场', '商店', '电影院', '专科医院', '专科医院', '医药保健销售店', '酒店', '宾馆', '招待所', '博物馆', '展览馆', '展览馆', '美术馆', '厂', '收费站', '服务区', '停车场', '汽车站', '档案馆']
+            addr = addr + name[Math.floor(Math.random() * name.length)]
+            return addr
+        }
+        function AjaxCreateuuid() {
+            $('#uuid').val(Mock.mock('@guid'));
+        }
+        function AjaxCreatePhoneNumber() {
+            var prefixArray = new Array("130", "131", "132", "133", "135", "137", "138", "170", "187", "189");
+            var i = parseInt(10 * Math.random());
+            var prefix = prefixArray[i];
+            for (var j = 0; j < 8; j++) {
+                prefix = prefix + Math.floor(Math.random() * 10);
+            }
+            $('#phonenumber').val(prefix);
+        }
+        function AjaxCreateCardNumber() {
+            cartype = ['1', '2', '3', '4']
+            var bankType = cartype[Math.floor(Math.random() * cartype.length)]
+            $('#cardnumber').val(bcBuilder(1, bankType)[0][0]);
+        }
+        function AjaxCreatecarcard() {
+            var head = [
+                "京A", "京C", "京E", "京F", "京H", "京G", "京B",
+                "津A", "津B", "津C", "津E",
+                "沪A", "沪B", "沪D", "沪C",
+                "渝A", "渝B", "渝C", "渝G", "渝H",
+                "冀A", "冀B", "冀C", "冀D", "冀E", "冀F", "冀G", "冀H", "冀J", "冀R", "冀T",
+                "豫A", "豫B", "豫C", "豫D", "豫E", "豫F", "豫G", "豫H", "豫J", "豫K", "豫L", "豫M", "豫N", "豫P", "豫Q", "豫R", "豫S", "豫U"
+                , "云A", "云C", "云D", "云E", "云F", "云G", "云H", "云J", "云K", "云L", "云M", "云N", "云P", "云Q", "云R ", "云S",
+                "辽A", "辽B", "辽C", "辽D", "辽E", "辽F", "辽G", "辽H", "辽J", "辽K", "辽L", "辽M", "辽N", "辽P", "辽V",
+                "黑A", "黑B", "黑C", "黑D", "黑E", "黑F", "黑G", "黑H", "黑J", "黑K", "黑L", "黑M", "黑N", "黑P", "黑R",
+                "湘A", "湘B", "湘C", "湘D", "湘E", "湘F", "湘G", "湘H", "湘J", "湘K", "湘L", "湘M", "湘N", "湘U", "湘S",
+                "皖A", "皖B", "皖C", "皖D", "皖E", "皖F", "皖G", "皖H", "皖J", "皖K", "皖L", "皖M", "皖N", "皖P", "皖Q", "皖R", "皖S",
+                "鲁A", "鲁B", "鲁C", "鲁D", "鲁E", "鲁F", "鲁G", "鲁H", "鲁J", "鲁K", "鲁L", "鲁M", "鲁N", "鲁P", "鲁Q", "鲁R", "鲁S", "鲁U", "鲁V", "鲁Y",
+                "新A", "新B", "新C", "新D", "新E", "新F", "新G", "新H", "新J", "新K", "新L", "新M", "新N", "新P", "新Q", "新R",
+                "苏A", "苏B", "苏C", "苏D", "苏E", "苏F", "苏G", "苏H", "苏J", "苏K", "苏L", "苏M", "苏N",
+                "浙A", "浙B", "浙C", "浙D", "浙E", "浙F", "浙G", "浙H", "浙J", "浙K ", "浙L",
+                "赣A", "赣B", "赣C", "赣D", "赣E", "赣F", "赣G", "赣H", "赣J", "赣K", "赣L", "赣M",
+                "鄂A", "鄂B", "鄂C", "鄂D", "鄂E", "鄂F", "鄂G", "鄂H", "鄂J", "鄂K", "鄂L", "鄂M", "鄂N", "鄂P", "鄂Q", "鄂R", "鄂S",
+                "桂A", "桂B", "桂C", "桂D", "桂E", "桂F", "桂G", "桂H", "桂J", "桂K", "桂L", "桂M", "桂N", "桂P", "桂R",
+                "甘A", "甘B", "甘C", "甘D", "甘E", "甘F", "甘G", "甘H", "甘J", "甘K", "甘L", "甘M", "甘N", "甘P",
+                "晋A", "晋B", "晋C", "晋D", "晋E", "晋F", "晋H", "晋J", "晋K", "晋L", "晋M",
+                "蒙A", "蒙B", "蒙C", "蒙D", "蒙E", "蒙F", "蒙G", "蒙H", "蒙J", "蒙K", "蒙L", "蒙M",
+                "陕A", "陕B", "陕C", "陕D", "陕E", "陕F", "陕G", "陕H", "陕J", "陕K", "陕U", "陕V",
+                "吉A", "吉B", "吉C", "吉D", "吉E", "吉F", "吉G", "吉H", "吉J",
+                "闽A", "闽B", "闽C", "闽D", "闽E", "闽F", "闽G", "闽H", "闽J", "闽K",
+                "贵A", "贵B", "贵C", "贵D", "贵E", "贵F", "贵G", "贵H", "贵J",
+                "粤A", "粤B", "粤C", "粤D", "粤E", "粤F", "粤G", "粤H", "粤J", "粤K", "粤L", "粤M", "粤N", "粤P", "粤Q", "粤R", "粤S", "粤T", "粤U", "粤V", "粤W", "粤X", "粤Y", "粤Z",
+                "青A", "青B", "青C", "青D", "青E", "青F", "青G", "青H",
+                "藏A", "藏B", "藏C", "藏D", "藏E", "藏F", "藏G", "藏H", "藏J",
+                "川A", "川B", "川C", "川D", "川E", "川F", "川H", "川J", "川K", "川L", "川M", "川Q", "川R", "川S", "川T", "川U", "川V", "川W", "川X", "川Y", "川Z",
+                "宁A", "宁B", "宁C", "宁D",
+                "琼A", "琼B", "琼C", "琼D", "琼E"];
+            var oneone = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            var carcard = head[Math.floor(Math.random() * head.length)];
+            var one = oneone[Math.floor(Math.random() * oneone.length)];
+            for (var i = 0; i < 5; i++) {
+                carcard = carcard + oneone[Math.floor(Math.random() * oneone.length)];
+            }
+            $('#carcard').val(carcard);
+        }
+    </script>
+	<script>
+		function AjaxCopyText(idname) {
+			var name = $('#' + idname);
+			name.select();
+			document.execCommand("Copy");
+		}
+	</script>
+</body>
+
+</html>

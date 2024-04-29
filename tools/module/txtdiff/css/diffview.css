@@ -1,0 +1,61 @@
+table.diff {
+	border-collapse:collapse;
+	border:1px solid darkgray;
+	windth:100%;
+	max-width:100%;
+	border-spacing:0
+}
+table.diff tbody { 
+	font-family:Courier, monospace;
+	windth:100%	
+}
+table.diff tbody th {
+	font-family:verdana,arial,'Bitstream Vera Sans',helvetica,sans-serif;
+	font-size:14px;
+	font-weight:normal;
+	border:1px solid #BBC;
+	color:#886;
+	padding:.3em .5em .1em 2em;
+	text-align:right;
+	vertical-align:top
+}
+table.diff thead {
+	font-size:14px;
+	border-bottom:1px solid #BBC;
+	font-family:Verdana;
+	border-radius:5px
+}
+table.diff thead th.texttitle {
+	font-size:16px;
+	text-align:left
+}
+table.diff thead tr {
+	font-size:14px;
+}
+table.diff tbody td {
+	padding:0px .4em;
+	padding-top:.4em;
+	vertical-align:top;
+}
+table.diff .empty {
+	background-color:#DDD;
+}
+table.diff .replace {
+	background-color:#FD8
+}
+table.diff .delete {
+	background-color:#E99;
+}
+table.diff .skip {
+	background-color:#EFEFEF;
+	border:1px solid #AAA;
+	border-right:1px solid #BBC;
+}
+table.diff .insert {
+	background-color:#9E9
+}
+table.diff th.author {
+	text-align:right;
+	border-top:1px solid #BBC;
+	background:#EFEFEF
+}

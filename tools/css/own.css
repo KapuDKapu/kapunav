@@ -1,0 +1,87 @@
+html {
+    height: 88%;
+}
+
+body {
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+}
+
+.navbar {
+    margin-bottom: 10px;
+}
+
+.navbar {
+    border-radius: 4px;
+}
+
+.example {
+    position: relative;
+    padding: 15px;
+    border: 1px solid #ddd0;
+    border-style: solid;
+    height: 100%;
+}
+
+.footer {
+    height: 10px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.list-group .f-hover {
+    background: #f5f5f5;
+}
+
+#NavTop {
+    /* width: 140px; */
+    /*图片盒子的宽度 右移*/
+    height: 250px;
+    margin-top: 50px;
+    position: fixed;
+    right: 0px;
+    top: 200px;
+    /*固定位置,右浮动，距上200px*/
+}
+
+#NavTop #NavCon {
+    /* width: 140px; */
+    height: 250px;
+    /* background: url('images/d.png') repeat-y; */
+    position: relative;
+
+}
+
+#NavTop #NavCon img.banner {
+    position: absolute;
+    left: 25px;
+    top: -40px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .aaaa {
+        display: none;
+    }
+}
+
+.delete {
+    background-color: #ff7d84;
+}
+
+.insert {
+    background-color: #b6ffc3;
+}
+
+.replace {
+    background-color: #ff7d84;
+}
+
+td {
+    word-break: break-all;
+}
