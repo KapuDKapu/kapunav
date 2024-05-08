@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+	<style type="text/css">
+	.layui-btn layui-btn-radius layui-btn-normal {
+		border-spacing: 0px;
+		border-style: solid;
+		border-color: #38f;
+		border-width: 1px;
+
+		display: inline-block;
+		line-height: 2em;
+		text-align: center;
+		vertical-align: middle;
+		background-color: #f8f8f8;
+
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.wx_image {
+		width: 73px;
+		height: 73px;
+		margin: 1px;
+		border: 1px solid #000;
+	}
+
+	.wx_list {
+		margin: 0;
+		padding: 0;
+		font-size: 0;
+	}
+
+	.wx_doing {
+		position: fixed;
+		top: 40%;
+		height: 4em;
+		left: 20%;
+		right: 20%;
+
+		background-color: #FFF;
+		border: 3px solid #000;
+		display: inline-block;
+		line-height: 4em;
+		vertical-align: middle;
+		text-align: center;
+	}
+</style>
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/tools/index.html">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+		<div class="panel">
+	<!-- 内容标题 -->
+	<div class="panel-heading">九宫格图片</div>
+	<!-- 内容体 -->
+	<div class="panel-body">
+		<!-- 具体内容 -->
+		<input id="upload_input" type="file" accept="image/*" style="display: none;" onchange="loadPic()">
+		<center>
+			<button for="upload_input" class="btn btn-info" onclick="xuanzepic()">选择图片</button>
+			<button class="btn btn-info" onclick="spin()">旋转90°</button>
+		</center>
+		<div id="make" style="margin: 1em 0px;">
+			<center><canvas id="canvas" class="img-thumbnail" style="margin: 0 0 1em 0; border: 1px solid #000;"
+					height="380" width="380">不支持本功能</canvas></center>
+			<br>
+			<center>
+				<div style="margin: 0 0 1em 0;">放大：<input type="range" id="enlarge" min="1" max="3" step="0.01"
+						value="0" style="width: 15em;" oninput="draw()"></div>
+			</center>
+			<center>
+				<div id="qua" style="margin: 0 0 1em 0;">质量：<input type="range" id="quality" min="0" max="100" step="1"
+						value="75" style="width: 15em;"></div>
+			</center>
+			<center>
+				<div style="margin: 0 0 1em 0;"><input id="alpha" type="checkbox"><label for="alpha">保留透明通道</label>
+				</div>
+				<div style="margin: 0 0 1em 0;">
+					<div class="radio-inline">
+						<input type="radio" id="normal" name="style" onchange="draw()" checked="checked">
+						<label for=" normal"> 原始分割 </label>
+					</div>
+					<div class="radio-inline">
+						<input type="radio" id="roundrect" name="style" onchange="draw()" checked="">
+						<label for=" roundrect"> 圆角分割 </label>
+					</div>
+					<div class="radio-inline">
+						<input type="radio" id="round" name="style" onchange="draw()" checked="">
+						<label for=" round"> 圆形分割 </label>
+					</div>
+				</div>
+
+			</center>
+		</div>
+		<p>
+			<center>
+				<div class="radio-inline">
+					<input type="radio" id="nine" name="style" onchange="draw()" checked="">
+					<label for=" nine"> 九格 </label>
+				</div>
+				<div class="radio-inline">
+					<input type="radio" id="four" name="style" onchange="draw()" checked="">
+					<label for=" four"> 四格 </label>
+				</div>
+
+			</center>
+		</p>
+		<center>
+
+			<br>
+			<div onclick="make()">
+				<button class="btn btn-info">生成</button>
+			</div>
+		</center>
+		<center>
+			<div id="result" style="margin: 1em 0; display: none;"></div>
+		</center>
+		<div id="doing" class="wx_doing" style="display: none;">处理中，请勿操作</div>
+	</div>
+	<div class="panel-footer">
+        将上传图片拆分成九宫格或四宫格，且支持远角边和圆形分割。
+    </div>
+</div>
+        <!-- 内容部分 -->
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+            console.log(data.text);
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+	<script type="text/javascript">
+	var touchdown = false,
+		preclick;
+	var l, t;
+	var img;
+	var doing = false;
+	CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+		if (w < 2 * r) {
+			r = w / 2;
+		}
+		if (h < 2 * r) {
+			r = h / 2;
+		}
+
+		this.beginPath();
+		this.moveTo(x + r, y);
+		this.arcTo(x + w, y, x + w, y + h, r);
+		this.arcTo(x + w, y + h, x, y + h, r);
+		this.arcTo(x, y + h, x, y, r);
+		this.arcTo(x, y, x + w, y, r);
+		this.closePath();
+		return this;
+	}
+
+	function isSafari() {
+		return (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent));
+	}
+
+	function loadPic(e) {
+		if (doing) {
+			return;
+		}
+
+		var selectedFile = document.getElementById('upload_input').files[0];
+		readFileData(selectedFile, function (image) {
+			const test = document.getElementById('upload_input');
+			test.outerHTML = test.outerHTML;
+			const count = document.getElementById("nine").checked ? 9 : 4;
+			l = t = 0;
+			document.getElementById("enlarge").value = 0;
+
+			const can = document.getElementById("canvas");
+			try {
+				returnToEdit(false);
+				can.width = can.height = Math.min(window.innerWidth * 0.95, window.innerHeight * 0.75);
+
+				if ("ontouchstart" in window) {
+					can.addEventListener("touchstart", down, false);
+					can.addEventListener("touchmove", move, false);
+					window.addEventListener("touchend", up, false);
+				} else {
+					can.addEventListener("mousedown", down, false);
+					can.addEventListener("mousemove", move, false);
+					window.addEventListener('mouseup', up, false);
+				}
+				draw();
+				window.scrollTo(0, can.offsetTop);
+			} catch (e) { }
+		});
+	}
+
+	function readFileData(file, callback) {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function (e) {
+			img = new Image();
+			img.src = e.target.result;
+			img.onload = function () {
+				var s = img.src.match(/data:.*;/)[0].match(/image.*;/)[0].match(/.*[^;]/)[0];
+				document.getElementById("qua").style.display = (s == "image/jpeg" || s == "image/webp") ? "" :
+					"none";
+				callback(img);
+			}
+		}
+	}
+
+	function draw() {
+		if (!img) {
+			return;
+		}
+
+		const count = document.getElementById("nine").checked ? 9 : 4;
+		const len = Math.min(img.width, img.height);
+		const can = document.getElementById("canvas");
+		const ctx = can.getContext("2d");
+		const width = can.width;
+		const e = document.getElementById("enlarge").value;
+
+		if (l + len / e > img.width) {
+			l = img.width - len / e;
+		} else if (l < 0) {
+			l = 0;
+		}
+		if (t + len / e > img.height) {
+			t = img.height - len / e;
+		} else if (t < 0) {
+			t = 0;
+		}
+
+		ctx.clearRect(0, 0, can.width, can.height);
+		ctx.save();
+		switch (getRadioValue("style")) {
+			case 1:
+				ctx.roundRect(0, 0, width, width, width / Math.sqrt(count) / 2);
+				ctx.clip();
+				break;
+
+			case 2:
+				ctx.beginPath();
+				ctx.arc(width / 2, width / 2, width / 2, 0, 2 * Math.PI);
+				ctx.clip();
+				break;
+		}
+		ctx.drawImage(img, l, t, len, len, 0, 0, width * e, width * e);
+		ctx.strokeStyle = "#fff";
+		if (count == 9) {
+			ctx.lineWidth = width / 892 * 8;
+			ctx.beginPath();
+			ctx.moveTo(width / 3, 0);
+			ctx.lineTo(width / 3, width);
+			ctx.moveTo(width / 3 * 2, 0);
+			ctx.lineTo(width / 3 * 2, width);
+			ctx.moveTo(0, width / 3);
+			ctx.lineTo(width, width / 3);
+			ctx.moveTo(0, width / 3 * 2);
+			ctx.lineTo(width, width / 3 * 2);
+			ctx.stroke();
+		} else {
+			ctx.lineWidth = width / 592 * 8;
+			ctx.beginPath();
+			ctx.moveTo(width / 2, 0);
+			ctx.lineTo(width / 2, width);
+			ctx.moveTo(0, width / 2);
+			ctx.lineTo(width, width / 2);
+			ctx.stroke();
+		}
+		ctx.restore();
+	}
+
+	function getPos(c, e) {
+		var box = c.getBoundingClientRect();
+
+		var x1, y1;
+		if ("ontouchstart" in window) {
+			if (e.targetTouches.length) {
+				x1 = e.targetTouches[0].clientX;
+				y1 = e.targetTouches[0].clientY;
+			} else {
+				x1 = e.changedTouches[0].clientX;
+				y1 = e.changedTouches[0].clientY;
+				touchdown = false;
+			}
+		} else {
+			x1 = e.clientX;
+			y1 = e.clientY;
+		}
+
+		return {
+			x: (x1 - box.left) * (c.width / box.width),
+			y: (y1 - box.top) * (c.height / box.height)
+		};
+	}
+
+	function prevent(e) {
+		if (window.event) {
+			window.event.returnValue = false;
+		} else {
+			e.preventDefault();
+		}
+	}
+
+	function down(e) {
+		if (doing) {
+			return;
+		}
+		prevent(e);
+
+		const p = getPos(document.getElementById("canvas"), e);
+		if ("ontouchstart" in window) {
+			if (!touchdown) {
+				touchdown = true;
+			} else {
+				return;
+			}
+		}
+
+		preclick = p;
+	}
+
+	function up(e) {
+		getPos(document.getElementById("canvas"), e);
+		if (touchdown) {
+			return;
+		}
+
+		preclick = null;
+	}
+
+	function move(e) {
+		if (!preclick) {
+			return;
+		}
+
+		const en = document.getElementById("enlarge").value;
+		const p = getPos(document.getElementById("canvas"), e);
+		const len = Math.min(img.width, img.height);
+		const can = document.getElementById("canvas");
+
+		l -= (p.x - preclick.x) / can.width * len / en;
+		t -= (p.y - preclick.y) / can.height * len / en;
+
+		draw();
+		preclick.x = p.x;
+		preclick.y = p.y;
+	}
+
+	function make() {
+		setDoing(true);
+		try {
+			const e = document.getElementById("enlarge").value;
+			const len = Math.min(img.width, img.height);
+			const can = document.createElement("canvas");
+			can.width = can.height = len;
+			const ctx = can.getContext("2d");
+
+			var s = img.src.match(/data:.*;/)[0].match(/image.*;/)[0].match(/.*[^;]/)[0];
+			if (document.getElementById("alpha").checked && getRadioValue("style") != 0) {
+				s = "image/png";
+				ctx.clearRect(0, 0, can.width, can.height);
+			} else if (!document.getElementById("alpha").checked) {
+				ctx.fillStyle = "#fff";
+				ctx.fillRect(0, 0, len, len);
+			}
+			switch (getRadioValue("style")) {
+				case 1:
+					ctx.roundRect(0, 0, len, len, len / Math.sqrt(document.getElementById("nine").checked ? 9 : 4) / 2);
+					ctx.clip();
+					break;
+
+				case 2:
+					ctx.beginPath();
+					ctx.arc(len / 2, len / 2, len / 2, 0, 2 * Math.PI);
+					ctx.clip();
+					break;
+			}
+			ctx.drawImage(img, l, t, len, len, 0, 0, len * e, len * e);
+
+			var i = new Image();
+			i.src = can.toDataURL(s, 1);
+			i.onload = function () {
+				const len = this.width;
+				const count = document.getElementById("nine").checked ? 9 : 4;
+				const can = document.createElement("canvas");
+				const ctx = can.getContext("2d");
+				const quality = document.getElementById("quality");
+
+				let inner = "";
+				if (isSafari()) {
+					inner += "长按图片保存";
+				} else {
+					inner += "点击图片保存";
+				}
+
+				var time = parseInt((new Date()).getTime() / 1000);
+				var s = this.src.match(/data:.*;/)[0].match(/image.*;/)[0].match(/.*[^;]/)[0];
+				if (count == 9) {
+					const size = can.width = can.height = len / 892 * 292;
+					for (let i = 0, x = 0, y = 0, index = 1; i < 3; i++) {
+						inner += '<div class="wx_list">';
+						for (let j = 0; j < 3; j++, index++) {
+							ctx.clearRect(0, 0, can.width, can.height);
+							ctx.drawImage(this, x, y, size, size, 0, 0, can.width, can.height);
+							let url = can.toDataURL(s, quality.value / 100);
+							inner += single(url, time, index);
+							x += size + len / 892 * 8;
+						}
+						inner += "</div>";
+						x = 0;
+						y += size + len / 892 * 8;
+					}
+				} else {
+					const size = can.width = can.height = len / 592 * 292;
+					for (let i = 0, x = 0, y = 0, index = 1; i < 2; i++) {
+						inner += '<div class="wx_list">';
+						for (let j = 0; j < 2; j++, index++) {
+							ctx.clearRect(0, 0, can.width, can.height);
+							ctx.drawImage(this, x, y, size, size, 0, 0, can.width, can.height);
+							let url = can.toDataURL(s, quality.value / 100);
+							inner += single(url, time, index);
+							x += size + len / 592 * 8;
+						}
+						inner += "</div>";
+						x = 0;
+						y += size + len / 592 * 8;
+					}
+				}
+				inner +=
+					'<div class = "layui-btn layui-btn-radius layui-btn-normal" style = "width: 8em; margin: 8px 0 0 0;" onclick = "returnToEdit(true)">返回编辑</div>'
+				const r = document.getElementById("result");
+				r.innerHTML = inner;
+				r.style.display = "";
+				document.getElementById("make").style.display = "none";
+				setDoing(false);
+			};
+		} catch (e) {
+			alert("转存失败！");
+			setDoing(false);
+		}
+	}
+
+	function returnToEdit(scroll) {
+		document.getElementById("make").style.display = "";
+		document.getElementById("result").innerHTML = "";
+		document.getElementById("result").style.display = "none";
+		if (scroll) {
+			window.scrollTo(0, document.getElementById("canvas").offsetTop);
+		}
+	}
+
+	function spin() {
+		setDoing(true);
+		try {
+			const can = document.createElement("canvas");
+			can.width = img.height;
+			can.height = img.width;
+
+			const ctx = can.getContext("2d");
+			ctx.translate(can.width / 2, can.height / 2);
+			ctx.rotate(Math.PI / 2);
+			ctx.drawImage(img, 0, 0, img.width, img.height, -img.width / 2, -img.height / 2, img.width, img.height);
+
+			var i = new Image();
+			var s = img.src.match(/data:.*;/)[0].match(/image.*;/)[0].match(/.*[^;]/)[0];
+			i.src = can.toDataURL(s, 1);
+			i.onload = function () {
+				setDoing(false);
+				img = this;
+				l = t = 0;
+				draw();
+			}
+		} catch (e) {
+			alert("旋转失败！");
+			setDoing(false);
+		}
+	}
+
+	function xuanzepic() {
+		$("#upload_input").click();
+	}
+
+	function setDoing(d) {
+		doing = d;
+		document.getElementById("nine").disabled = doing;
+		document.getElementById("four").disabled = doing;
+		document.getElementById("doing").style.display = doing ? "" : "none";
+	}
+
+	function getRadioValue(name) {
+		var l = document.getElementsByName(name);
+		for (var i = 0; i < l.length; i++) {
+			if (l[i].checked) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	function single(url, time, index) {
+		if (isSafari()) {
+			return `<img src=static/picture/f2d0a5ed8de24439bf225b1a01e18d73.gif class="wx_image"/>`;
+		} else {
+			return `<a download=${time}-${index} href=${url}><img src=${url} class="wx_image"/></a>`;
+		}
+	}
+</script>
+</body>
+
+</html>

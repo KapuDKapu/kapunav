@@ -2844,7 +2844,7 @@ footer.main-footer {
     padding: 9px 20px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.6) !important
+    background-color: rgb(213 213 222 / 60%) !important
 }
 
 .header-big #search button {

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/tools/index.html">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+
+        <!-- 内容部分 -->
+        <div id="ipipip"></div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+            console.log(data.text);
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/ip/api.php", function (data) {
+            console.log(data.text);
+            document.getElementById('ipipip').innerHTML = data.text;
+        });
+    </script>
+
+</body>
+
+</html>

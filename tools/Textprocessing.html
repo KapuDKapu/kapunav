@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/tools/index.html">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+
+        <!-- 内容部分 -->
+		<div class="panel">
+    <!-- 内容标题 -->
+    <div class="panel-heading">换行文本处理</div>
+    <!-- 内容体 -->
+    <div class="panel-body">
+        <!-- 具体内容 -->
+        <div class="col-xs-12 col-md-12">
+            <textarea class="form-control" rows="3" id="befortext" name="befortext" onchange="tt('befortext')"
+                style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
+            <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">替换文本</button>
+                    </span>
+                    <input id="wordexchange" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                <button class="btn btn-info" onclick="textexchange()">转换</button>
+                <button class="btn btn-info" onclick="AjaxCopyText('aftertext')">复制</button>
+            </div>
+
+            <textarea class="form-control" rows="3" id="aftertext" name="aftertext" onchange="tt('aftertext')"
+                style="overflow-y:hidden"></textarea>
+        </div>
+    </div>
+    <div class="panel-footer">
+        将多行文本转化为一行，且可将换行替换为指定字符
+    </div>
+
+</div>
+<!-- 第三个工具 -->
+<div class="panel">
+    <!-- 内容标题 -->
+    <div class="panel-heading">文本添加行号</div>
+    <!-- 内容体 -->
+    <div class="panel-body">
+        <!-- 具体内容 -->
+        <div class="col-xs-12 col-md-12">
+            <textarea class="form-control" rows="3" id="befortext11" name="befortext11" onchange="tt('befortext11')"
+                style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
+            <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                <button class="btn btn-info" onclick="tianjihanghao()">添加</button>
+                <button class="btn btn-info" onclick="AjaxCopyText('aftertext11')">复制</button>
+            </div>
+            <textarea class="form-control" rows="3" id="aftertext11" name="aftertext11" onchange="tt('aftertext11')"
+                style="overflow-y:hidden"></textarea>
+        </div>
+    </div>
+    <div class="panel-footer">
+        为文本添加行号
+    </div>
+</div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+            console.log(data.text);
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+	<script>
+    //复制
+    function AjaxCopyText(idname) {
+        var name = $('#' + idname);
+        name.select();
+        document.execCommand("Copy");
+    }
+    //随机字数文本
+    function textexchange() {
+        var befortext = $('#befortext').val();
+        var wordexchange = $('#wordexchange').val();
+		var lines = befortext.split("\n");
+		var aftertext = ''
+		for(i=0;i<lines.length;i++){
+			if (lines[i] != '') {  //if 判断  &&是且   ||是或
+				aftertext = aftertext+lines[i]+wordexchange;
+			}
+			
+		}
+		document.getElementById("aftertext").innerText = aftertext;
+    }
+    //添加行号
+    function tianjihanghao() {
+        var befortext11 = $('#befortext11').val();
+		var lines = befortext11.split("\n");
+		var aftertext = '';
+		var lines1 = [];
+		for(i=0;i<lines.length;i++){
+			if (lines[i] != '') {
+				lines1.push(lines[i])
+			}
+		}
+		for(i=0;i<lines1.length;i++){
+			aftertext = aftertext+(i+1).toString()+"、"+lines1[i]+'\r\n';
+		}
+		console.log(aftertext)
+		$("#aftertext11").text(aftertext);
+    }
+</script>
+</body>
+
+</html>

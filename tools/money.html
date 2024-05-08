@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <title>WebTools</title>
+    <link rel="stylesheet" href="css/zui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/own.css" />
+</head>
+
+<body>
+    <div class="container" style="margin-top: 42px;">
+        <div style="text-align:center;">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="max-width:1159px;margin:0 auto;">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/tools/index.html">WebTools</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-example">
+                        <div id='hitokoto' style="margin-top: 10px;text-align: rightd;"></div>
+                    </div><!-- END .navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <div style="margin-top: 5px;">
+            <p id="oneword" align="right"></p>
+        </div>
+<div class="panel">
+    <!-- 内容标题 -->
+    <div class="panel-heading">金额大小写</div>
+    <!-- 内容体 -->
+    <div class="panel-body">
+        <!-- 具体内容 -->
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="postname" class="col-sm-2 control-label">数字</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="数字" id="aa" name="name"
+                        oninput="Edit1Change();">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="headerjson" class="col-sm-2 control-label">金额大写</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="金额大写" id="bb" name="name">
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <center>
+
+
+            <div class="table-responsive" style="width: 100%;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="table-id">
+                                1
+                            </th>
+                            <th class="table-id">
+                                2
+                            </th>
+                            <th class="table-id">
+                                3
+                            </th>
+                            <th class="table-id">
+                                4
+                            </th>
+                            <th class="table-id">
+                                5
+                            </th>
+                            <th class="table-id">
+                                6
+                            </th>
+                            <th class="table-id">
+                                7
+                            </th>
+                            <th class="table-id">
+                                8
+                            </th>
+                            <th class="table-id">
+                                9
+                            </th>
+                            <th class="table-id">
+                                0
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                壹
+                            </td>
+                            <td>
+                                贰
+                            </td>
+                            <td>
+                                叁
+                            </td>
+                            <td>
+                                肆
+                            </td>
+                            <td>
+                                伍
+                            </td>
+                            <td>
+                                陆
+                            </td>
+                            <td>
+                                柒
+                            </td>
+                            <td>
+                                柒
+                            </td>
+                            <td>
+                                玖
+                            </td>
+                            <td>
+                                零
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive" style="width: 100%;">
+                <table class="table table-bordered" style="margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th class="table-id">
+                                十
+                            </th>
+                            <th class="table-id">
+                                百
+                            </th>
+                            <th class="table-id">
+                                千
+                            </th>
+                            <th class="table-id">
+                                万
+                            </th>
+                            <th class="table-id">
+                                亿
+                            </th>
+                            <th class="table-id">
+                                元
+                            </th>
+                            <th class="table-id">
+                                角
+                            </th>
+                            <th class="table-id">
+                                分
+                            </th>
+                            <th class="table-id">
+                                整
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                拾
+                            </td>
+                            <td>
+                                佰
+                            </td>
+                            <td>
+                                仟
+                            </td>
+                            <td>
+                                万
+                            </td>
+                            <td>
+                                亿
+                            </td>
+                            <td>
+                                元
+                            </td>
+                            <td>
+                                角
+                            </td>
+                            <td>
+                                分
+                            </td>
+                            <td>
+                                整
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </center>
+    </div>
+    <div class="panel-footer">
+        面板脚注
+    </div>
+</div>
+        <!-- 内容部分 -->
+    </div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation" style="margin-top:10px;">
+                <div style="margin-top: 7px;">
+                    <p align="center">Copyright <i class="fa-solid fa-copyright"></i> 2021-2024 All Rights Reserved
+                        开发者：<i class="fa-brands fa-weixin"></i>mailtoheart </p>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="js/zui.min.js"></script>
+    <script src="js/own.js"></script>
+    <!-- 底部的一言 -->
+    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <script>
+        $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
+            console.log(data.text);
+            document.getElementById('hitokoto').innerHTML = data.text;
+        });
+    </script>
+	<script src="js/ToNum.js"></script>
+<script>
+    var j = chineseNumber(document.getElementById("aa").value);
+    document.getElementById("bb").value = j;
+
+    function Edit1Change() {
+
+        document.getElementById("bb").value = chineseNumber(document.getElementById("aa").value);
+    }
+</script>
+</body>
+
+</html>

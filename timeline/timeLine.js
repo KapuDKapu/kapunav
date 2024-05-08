@@ -5,7 +5,11 @@
 // var data = [{ "title": "ffmpeg \u4f7f\u7528\u65b9\u6cd5\u5408\u96c6", "link": "https:\/\/nowtime.cc\/software\/834.html", "time": "1578718860" }, { "title": "CSS3 \u52a8\u753b\u5361\u987f\u6027\u80fd\u4f18\u5316\u89e3\u51b3\u65b9\u6848", "link": "https:\/\/nowtime.cc\/html5\/827.html", "time": "1575768660" }];
 var data =
     [   
-		
+		{
+            "title": "人生逆袭书单：建议在40岁前逼自己读完",
+            "link": "./files/人生逆袭书单：建议在40岁前逼自己读完.html",
+            "time": "1714974375"
+        },
 		{
             "title": "导出Markdown文档为其他格式（PDF、HTML等）",
             "link": "./files/导出Markdown文档为其他格式（PDF、HTML等）.html",
