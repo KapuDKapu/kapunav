@@ -1,0 +1,245 @@
+	*,
+	*:before,
+	*:after {
+	  -webkit-box-sizing: border-box;
+			  box-sizing: border-box;
+	}
+	html,
+	body {
+	  min-height: 100%;
+	}
+	html {
+	  -ms-text-size-adjust: 100%;
+	  -webkit-text-size-adjust: 100%
+	}
+	body {
+	  margin: 0;
+	}
+	article,
+	aside,
+	details,
+	figcaption,
+	figure,
+	footer,
+	header,
+	hgroup,
+	menu,
+	main,
+	nav,
+	section,
+	summary {
+	  display: block;
+	}
+	audio,
+	canvas,
+	progress,
+	video {
+	  display: inline-block;
+	  vertical-align: baseline
+	}
+	audio:not([controls]) {
+	  display: none;
+	  height: 0;
+	}
+	[hidden],
+	template,
+	script {
+	  display: none;
+	}
+	a {
+	  background-color: transparent;
+	}
+	a:focus {
+	  outline: thin dotted;
+	}
+	a:active,
+	a:hover {
+	  outline: 0;
+	}
+	ins,
+	a {
+	  text-decoration: none;
+	}
+	abbr[title] {
+	  border-bottom: 1px dotted;
+	}
+	b,
+	strong {
+	  font-weight: bold;
+	}
+	pre {
+	  white-space: pre-wrap;
+	}
+	q {
+	  quotes: "\201C" "\201D" "\2018" "\2019";
+	}
+	small {
+	  font-size: 80%;
+	}
+	sub,
+	sup {
+	  font-size: 75%;
+	  line-height: 0;
+	  position: relative;
+	  vertical-align: baseline;
+	}
+	sup {
+	  top: -0.5em;
+	}
+	sub {
+	  bottom: -0.25em;
+	}
+	img {
+	  -webkit-box-sizing: border-box;
+			  box-sizing: border-box;
+	  max-width: 100%;
+	  height: auto;
+	  vertical-align: middle;
+	  border: 0
+	}
+	svg:not(:root) {
+	  overflow: hidden;
+	}
+	figure {
+	  margin: 0;
+	}
+	code,
+	kbd,
+	pre,
+	samp {
+	  font-family: Monaco, Menlo, Consolas, "Courier New", "FontAwesome", monospace;
+	  font-size: 1em;
+	}
+	fieldset {
+	  border: 1px solid #c0c0c0;
+	  margin: 0 2px;
+	  padding: 0.35em 0.625em 0.75em;
+	}
+	legend {
+	  border: 0;
+	  padding: 0
+	}
+	button,
+	input,
+	optgroup,
+	select,
+	textarea {
+	  color: inherit;
+	  font: inherit;
+	  margin: 0
+	}
+	button {
+	  overflow: visible;
+	}
+	button,
+	input {
+	  line-height: normal;
+	}
+	button,
+	select {
+	  text-transform: none;
+	}
+	button,
+	html input[type="button"],
+	input[type="reset"],
+	input[type="submit"] {
+	  -webkit-appearance: button;
+	  cursor: pointer
+	}
+	input[type="radio"],
+	input[type="checkbox"] {
+	  cursor: pointer;
+	  padding: 0;
+	  -webkit-box-sizing: border-box;
+			  box-sizing: border-box
+	}
+	button[disabled],
+	html input[disabled] {
+	  cursor: default;
+	}
+	button::-moz-focus-inner,
+	input::-moz-focus-inner {
+	  border: 0;
+	  padding: 0;
+	}
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+	  height: auto;
+	}
+	input[type="search"] {
+	  -webkit-appearance: textfield;
+	  -webkit-box-sizing: content-box;
+			  box-sizing: content-box
+	}
+	input[type="search"]::-webkit-search-cancel-button,
+	input[type="search"]::-webkit-search-decoration {
+	  -webkit-appearance: none;
+	}
+	textarea {
+	  overflow: auto;
+	  vertical-align: top;
+	  resize: vertical;
+	}
+	optgroup {
+	  font-weight: bold;
+	}
+	table {
+	  border-collapse: collapse;
+	  border-spacing: 0;
+	}
+	td,
+	th {
+	  padding: 0;
+	}
+/* 基础样式 */
+	* {
+		margin: 0;
+		padding: 0;
+		border: 0 none;
+		list-style: none;
+		outline: none;
+	}
+	body {
+		background-color: #F1F1F1;
+	}
+	html,body,ul,ol,li,div,span,p {
+		font:14px/25px 'Microsoft Yahei',"微软雅黑", "SimSun", "宋体", "Arial Narrow", HELVETICA;
+		list-style-type: none;
+		color: #333333;
+	}
+	a:link,a:visited,a:active,a:hover {
+		color: #333333;
+	}
+	.cf:before,.cf:after { content: " "; display: table; }
+	.cf:after { clear: both; }
+	.z { float: left; }
+	.y { float: right; }
+	.alignR { text-align:right; }
+	.alignC { text-align:center; }
+	.alignL { text-align:left; }
+	.line01 {
+		margin-top: 10px;
+		height: 8px;
+		border-top: 1px dotted #DDDDDD;
+		overflow: hidden;
+		clear: both;
+	}
+	.line02 {
+		height: 20px;
+		border-bottom: 1px solid #D6D6D6;
+		overflow: hidden;
+		clear: both;
+	}
+	.width1024 {
+		margin: 0 auto;
+		width: 1024px;
+	}
+	.main {
+		width: 1024px;
+		border: 1px solid #D6D6D6;
+		background: #FFFFFF;
+		margin: 20px auto 0 auto;
+		font-size: 12px;
+		line-height: 24px;
+		clear: both;
+	}

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>JS中文打字练习</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/my.typetool.css">
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/articles.js"></script>
+	<script type="text/javascript" src="js/my.typetool.js"></script>
+
+</head>
+
+<body>
+	<div class="type-content-div">
+		<!-- typetool -->
+		<div class="typetool">
+			<div class="typetool-title" id="typetool-title">
+				中文打字练习
+			</div>
+			<div class="typetool-data">
+				<ul id="result_ul">
+					<li id="times">0</li>
+					<li id="speed">0.00</li>
+					<li id="keySpeed">0.00</li>
+					<li id="keyCode">0.00</li>
+					<li id="modifyCount">0</li>
+					<li id="errorCount">0</li>
+					<li id="wordCount">57</li>
+				</ul>
+			</div>
+			<div class="typetool-progress">
+				<div class="progress-bar" id="percent"></div>
+			</div>
+			<div class="typetool-dzg">
+				<span name="subject" id="dzq" value=""
+					class="dzq">偶尔来练练打字，也是一件让人愉悦的事情的说。彩色数据条从左到右分别是：时间，速度，击键，码长，回改，错字，总字数。</span>
+			</div>
+			<div class="typetool-gdz">
+				<textarea name="subject" id="gdq" value="" class="gdq" onpaste="return false;"></textarea>
+			</div>
+			<div class="typetool-btn">
+				<input type="button" value="暂停" class="zyh-btn" onclick="pauseCount();">
+				<input type="button" value="重打" class="zyh-btn zyh-btn2" onclick="reType();">
+			</div>
+		</div>
+		<!--/ typetool -->
+
+		<div class="article-list-div">
+			<div class="article-tab">
+				<div class="tran-div-oper">
+					<ul>
+						<li class="selected-li-tab" onclick="zyhTranTab(0)">文章列表</li>
+						<li class="unselected-li-tab" onclick="zyhTranTab(1)">自定义</li>
+					</ul>
+				</div>
+				<div class="line-div"></div>
+				<div class="the-tab-div">
+					<div class="article-search">
+						<input name="search" value="" type="text" hidefocus="true" class="search-ipt" id="searchText"
+							maxlength="10" onkeyup="changeSearchText()">
+						<input type="button" value="查找" hidefocus="true" class="zyh-btn" onclick="searchArticle()">
+					</div>
+					<ul id="article_list" class="article-ul">
+					</ul>
+					<ul id="article_search_result" class="article-ul" style="display: none;"></ul>
+				</div>
+				<div class="the-tab-div">
+					<div class="type-text-div">
+						<textarea name="subject" id="custom_text" value="" class="custom-textarea"
+							maxlength="1024"></textarea>
+					</div>
+					<div class="row-submit">
+						<input type="button" class="zyh-btn" value="载文" onclick="loadCustomText()" />
+						<input type="button" class="zyh-btn zyh-btn2" value="清空" onclick="clearCustomText()" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

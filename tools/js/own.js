@@ -22,3 +22,7 @@ function AjaxCreateAddress() {
 function AjaxCreateuuid() {
 	$('#uuid').val(Mock.mock('@guid'));
 }
+function tt(obid) {
+	var textarea = document.getElementById(obid);
+	makeExpandingArea(textarea);
+}
