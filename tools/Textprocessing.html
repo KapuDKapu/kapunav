@@ -32,59 +32,85 @@
         </div>
 
         <!-- 内容部分 -->
-		<div class="panel">
-    <!-- 内容标题 -->
-    <div class="panel-heading">换行文本处理</div>
-    <!-- 内容体 -->
-    <div class="panel-body">
-        <!-- 具体内容 -->
-        <div class="col-xs-12 col-md-12">
-            <textarea class="form-control" rows="3" id="befortext" name="befortext" onchange="tt('befortext')"
-                style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
-            <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">替换文本</button>
-                    </span>
-                    <input id="wordexchange" type="text" class="form-control">
+        <div class="panel">
+            <!-- 换行文本处理 -->
+            <div class="panel-heading">换行文本处理</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="col-xs-12 col-md-12">
+                    <textarea class="form-control" rows="3" id="befortext" name="befortext" onchange="tt('befortext')"
+                        style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
+                    <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">替换文本</button>
+                            </span>
+                            <input id="wordexchange" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                        <button class="btn btn-info" onclick="textexchange()">转换</button>
+                        <button class="btn btn-info" onclick="AjaxCopyText('aftertext')">复制</button>
+                    </div>
+
+                    <textarea class="form-control" rows="3" id="aftertext" name="aftertext" onchange="tt('aftertext')"
+                        style="overflow-y:hidden"></textarea>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
-                <button class="btn btn-info" onclick="textexchange()">转换</button>
-                <button class="btn btn-info" onclick="AjaxCopyText('aftertext')">复制</button>
+            <div class="panel-footer">
+                将多行文本转化为一行，且可将换行替换为指定字符
             </div>
 
-            <textarea class="form-control" rows="3" id="aftertext" name="aftertext" onchange="tt('aftertext')"
-                style="overflow-y:hidden"></textarea>
         </div>
-    </div>
-    <div class="panel-footer">
-        将多行文本转化为一行，且可将换行替换为指定字符
-    </div>
-
-</div>
-<!-- 第三个工具 -->
-<div class="panel">
-    <!-- 内容标题 -->
-    <div class="panel-heading">文本添加行号</div>
-    <!-- 内容体 -->
-    <div class="panel-body">
-        <!-- 具体内容 -->
-        <div class="col-xs-12 col-md-12">
-            <textarea class="form-control" rows="3" id="befortext11" name="befortext11" onchange="tt('befortext11')"
-                style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
-            <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
-                <button class="btn btn-info" onclick="tianjihanghao()">添加</button>
-                <button class="btn btn-info" onclick="AjaxCopyText('aftertext11')">复制</button>
+        <!-- 文本添加行号 -->
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">文本添加行号</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="col-xs-12 col-md-12">
+                    <textarea class="form-control" rows="3" id="befortext11" name="befortext11"
+                        onchange="tt('befortext11')" style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
+                    <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                        <button class="btn btn-info" onclick="tianjihanghao()">添加</button>
+                        <button class="btn btn-info" onclick="AjaxCopyText('aftertext11')">复制</button>
+                    </div>
+                    <textarea class="form-control" rows="3" id="aftertext11" name="aftertext11"
+                        onchange="tt('aftertext11')" style="overflow-y:hidden"></textarea>
+                </div>
             </div>
-            <textarea class="form-control" rows="3" id="aftertext11" name="aftertext11" onchange="tt('aftertext11')"
-                style="overflow-y:hidden"></textarea>
+            <div class="panel-footer">
+                为文本添加行号
+            </div>
         </div>
-    </div>
-    <div class="panel-footer">
-        为文本添加行号
-    </div>
-</div>
+
+
+        <!-- 日志填写 -->
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">日志填报</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="col-xs-12 col-md-12">
+                    <textarea class="form-control" rows="3" id="befortext112" name="befortext112"
+                        onchange="tt('befortext11')" style="overflow-y:hidden;margin-bottom: 10px;"></textarea>
+                    <div class="col-xs-12 col-md-3" style="margin-bottom: 10px; padding-left: 0px;">
+                        <button class="btn btn-info" onclick="rizhitihuan()">格式化</button>
+                        <button class="btn btn-info" onclick="AjaxCopyText('aftertext112')">复制</button>
+                    </div>
+                    <textarea class="form-control" rows="3" id="aftertext112" name="aftertext112"
+                        onchange="tt('aftertext112')" style="overflow-y:hidden"></textarea>
+                </div>
+            </div>
+            <div class="panel-footer">
+                日志填报
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -108,49 +134,65 @@
     <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
     <script>
         $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
-            console.log(data.text);
             document.getElementById('hitokoto').innerHTML = data.text;
         });
     </script>
-	<script>
-    //复制
-    function AjaxCopyText(idname) {
-        var name = $('#' + idname);
-        name.select();
-        document.execCommand("Copy");
-    }
-    //随机字数文本
-    function textexchange() {
-        var befortext = $('#befortext').val();
-        var wordexchange = $('#wordexchange').val();
-		var lines = befortext.split("\n");
-		var aftertext = ''
-		for(i=0;i<lines.length;i++){
-			if (lines[i] != '') {  //if 判断  &&是且   ||是或
-				aftertext = aftertext+lines[i]+wordexchange;
-			}
-			
-		}
-		document.getElementById("aftertext").innerText = aftertext;
-    }
-    //添加行号
-    function tianjihanghao() {
-        var befortext11 = $('#befortext11').val();
-		var lines = befortext11.split("\n");
-		var aftertext = '';
-		var lines1 = [];
-		for(i=0;i<lines.length;i++){
-			if (lines[i] != '') {
-				lines1.push(lines[i])
-			}
-		}
-		for(i=0;i<lines1.length;i++){
-			aftertext = aftertext+(i+1).toString()+"、"+lines1[i]+'\r\n';
-		}
-		console.log(aftertext)
-		$("#aftertext11").text(aftertext);
-    }
-</script>
+    <script>
+        //复制
+        function AjaxCopyText(idname) {
+            var name = $('#' + idname);
+            name.select();
+            document.execCommand("Copy");
+        }
+        //随机字数文本
+        function textexchange() {
+            var befortext = $('#befortext').val();
+            var wordexchange = $('#wordexchange').val();
+            var lines = befortext.split("\n");
+            var aftertext = ''
+            for (i = 0; i < lines.length; i++) {
+                if (lines[i] != '') {  //if 判断  &&是且   ||是或
+                    aftertext = aftertext + lines[i] + wordexchange;
+                }
+
+            }
+            document.getElementById("aftertext").innerText = aftertext;
+        }
+        //添加行号
+        function tianjihanghao() {
+            var befortext11 = $('#befortext11').val();
+            var lines = befortext11.split("\n");
+            var aftertext = '';
+            var lines1 = [];
+            for (i = 0; i < lines.length; i++) {
+                if (lines[i] != '') {
+                    lines1.push(lines[i])
+                }
+            }
+            for (i = 0; i < lines1.length; i++) {
+                aftertext = aftertext + (i + 1).toString() + "、" + lines1[i] + '\r\n';
+            }
+            $("#aftertext11").text(aftertext);
+        }
+
+        //日志
+        function rizhitihuan() {
+            var beforrizhi = $('#befortext112').val();
+            var afterrizhi = beforrizhi.replaceAll("	","--");
+            var lines = afterrizhi.split("\n");
+            var aftertext = '';
+            var lines1 = [];
+            for (i = 0; i < lines.length; i++) {
+                if (lines[i] != '') {
+                    lines1.push(lines[i])
+                }
+            }
+            for (i = 0; i < lines1.length; i++) {
+                aftertext = aftertext + (i + 1).toString() + "、" + lines1[i] + '\r\n';
+            }
+            $("#aftertext112").text(aftertext);
+        }
+    </script>
 </body>
 
 </html>
