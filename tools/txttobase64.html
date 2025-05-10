@@ -30,23 +30,24 @@
         <div style="margin-top: 5px;">
             <p id="oneword" align="right"></p>
         </div>
-		<div class="panel">
-    <!-- 内容标题 -->
-    <div class="panel-heading">文本转base64</div>
-    <!-- 内容体 -->
-    <div class="panel-body">
-        <!-- 具体内容 -->
-        <div class="row">
-            <div class="col-xs-12 col-md-6" style="margin-bottom: 10px;"><textarea id="encode" class="form-control"
-                    rows="10">i &hearts; you</textarea></div>
-            <div class="col-xs-12 col-md-6"><textarea id="decode" class="form-control" rows="10">aSDimaUgeW91</textarea>
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">文本转base64</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <div class="row">
+                    <div class="col-xs-12 col-md-6" style="margin-bottom: 10px;"><textarea id="encode"
+                            class="form-control" rows="10">i &hearts; you</textarea></div>
+                    <div class="col-xs-12 col-md-6"><textarea id="decode" class="form-control"
+                            rows="10">aSDimaUgeW91</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                文本和base64之间相互转换。
             </div>
         </div>
-    </div>
-    <div class="panel-footer">
-        文本和base64之间相互转换。
-    </div>
-</div>
         <!-- 内容部分 -->
     </div>
 
@@ -68,32 +69,32 @@
     <script src="js/zui.min.js"></script>
     <script src="js/own.js"></script>
     <!-- 底部的一言 -->
-    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <!-- <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
     <script>
         $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
             console.log(data.text);
             document.getElementById('hitokoto').innerHTML = data.text;
         });
+    </script> -->
+    <script src='js/jquery.base64.js'></script>
+    <script>
+        var dec = $('#decode'),
+            enc = $('#encode');
+        $.base64.utf8encode = true;
+
+        enc.keyup(function () {
+            dec.val($.base64.btoa(this.value));
+        });
+
+
+        dec.keyup(function () {
+            enc.val($.base64.atob(this.value, true));
+        });
+
+        $('textarea').on('focus blur', function () {
+            $(this).prev('label').stop().fadeToggle(200);
+        });
     </script>
-	<script src='js/jquery.base64.js'></script>
-<script>
-    var dec = $('#decode'),
-        enc = $('#encode');
-    $.base64.utf8encode = true;
-
-    enc.keyup(function () {
-        dec.val($.base64.btoa(this.value));
-    });
-
-
-    dec.keyup(function () {
-        enc.val($.base64.atob(this.value, true));
-    });
-
-    $('textarea').on('focus blur', function () {
-        $(this).prev('label').stop().fadeToggle(200);
-    });
-</script>
 </body>
 
 </html>

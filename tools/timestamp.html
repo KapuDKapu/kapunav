@@ -32,57 +32,57 @@
         </div>
 
         <!-- 内容部分 -->
-		<div class="panel">
-    <!-- 内容标题 -->
-    <div class="panel-heading">时间戳转换</div>
-    <!-- 内容体 -->
-    <div class="panel-body">
-        <!-- 具体内容 -->
-        <center>
-            <div class="row">
-                <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
-                    <input id="input3" type="date" value="" class="form-control" />
-                </div>
-                <div class="col-xs-12 col-md-2" style="margin-bottom: 10px;">
-                    <span class="btn btn-info" id="btn3">转换时间戳</span>
-                </div>
-                <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
-                    <input type="text " id="input3-1" class="form-control">
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
-                    <input id="input1" type="datetime-local" value="2021-11-11T11:11:11" class="form-control" />
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">时间戳转换</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <center>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
+                            <input id="input3" type="date" value="" class="form-control" />
+                        </div>
+                        <div class="col-xs-12 col-md-2" style="margin-bottom: 10px;">
+                            <span class="btn btn-info" id="btn3">转换时间戳</span>
+                        </div>
+                        <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
+                            <input type="text " id="input3-1" class="form-control">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
+                            <input id="input1" type="datetime-local" value="2021-11-11T11:11:11" class="form-control" />
 
-                </div>
-                <div class="col-xs-12 col-md-2" style="margin-bottom: 10px;">
-                    <span class="btn btn-info" id="btn1">转换时间戳</span>
-                </div>
-                <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
-                    <input type="text " id="input1-1" class="form-control">
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
+                        </div>
+                        <div class="col-xs-12 col-md-2" style="margin-bottom: 10px;">
+                            <span class="btn btn-info" id="btn1">转换时间戳</span>
+                        </div>
+                        <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
+                            <input type="text " id="input1-1" class="form-control">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
 
-                    <input type="text " id="input2" value="1529033019000" class="form-control">
-                </div>
-                <div class="col-xs-12 col-md-2" style="margin-bottom: 10px;">
-                    <span class="btn btn-info" id="btn2">转换时间</span>
-                </div>
-                <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
+                            <input type="text " id="input2" value="1529033019000" class="form-control">
+                        </div>
+                        <div class="col-xs-12 col-md-2" style="margin-bottom: 10px;">
+                            <span class="btn btn-info" id="btn2">转换时间</span>
+                        </div>
+                        <div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
 
-                    <input type="text " id="input2-1" class="form-control">
-                </div>
+                            <input type="text " id="input2-1" class="form-control">
+                        </div>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="panel-footer">
-        日期和时间戳之间相互转换。
-    </div>
-</div>
+            <div class="panel-footer">
+                日期和时间戳之间相互转换。
+            </div>
+        </div>
     </div>
 
 
@@ -103,62 +103,62 @@
     <script src="js/zui.min.js"></script>
     <script src="js/own.js"></script>
     <!-- 底部的一言 -->
-    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <!-- <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
         <script>
         $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
             document.getElementById('hitokoto').innerHTML = data.text;
         });
+    </script> -->
+    <script type="text/javascript">
+        window.onload = function () {
+            // 在这里编写需要自动执行的代码
+            var nearr = (new Date().getFullYear()).toString()
+            var monthh = (new Date().getMonth() + 1).toString()
+            if (monthh.length == 1) {
+                monthh = '0' + monthh
+            }
+            var dayy = (new Date().getDate()).toString()
+            if (dayy.length == 1) {
+                dayy = '0' + dayy
+            }
+            var riqi = nearr + '-' + monthh + '-' + dayy
+            console.log(riqi);
+            var xiaoshi = (new Date().getHours()).toString()
+            if (xiaoshi.length == 1) {
+                xiaoshi = '0' + xiaoshi
+            }
+            var fenzhong = (new Date().getMinutes()).toString()
+            if (fenzhong.length == 1) {
+                fenzhong = '0' + fenzhong
+            }
+            var miaozhong = (new Date().getSeconds()).toString()
+            if (miaozhong.length == 1) {
+                miaozhong = '0' + miaozhong
+            }
+            var riqishijian = riqi + 'T' + xiaoshi + ':' + fenzhong + ':' + miaozhong
+            console.log(riqishijian)
+            //document.getElementById('input3').value = riqi;
+            $("#input3").attr("value", riqi);
+            $("#input1").attr("value", riqishijian);
+            var timess = DateToUnix(String(riqishijian).replace("T", " "))
+            console.log(timess)
+            $("#input2").attr("value", timess);
+        }
     </script>
-	<script type="text/javascript">
-        window.onload = function() {
-		// 在这里编写需要自动执行的代码
-			var nearr = (new Date().getFullYear()).toString()
-			var monthh = (new Date().getMonth()+1).toString()
-			if(monthh.length == 1 ){
-				monthh = '0'+monthh
-			}
-			var dayy = (new Date().getDate()).toString()
-			if(dayy.length == 1 ){
-				dayy = '0'+dayy
-			}
-			var riqi =  nearr+ '-'+monthh +'-'+dayy
-			console.log(riqi);
-			var xiaoshi = (new Date().getHours()).toString()
-			if(xiaoshi.length == 1 ){
-				xiaoshi = '0'+xiaoshi
-			}
-			var fenzhong = (new Date().getMinutes()).toString()
-			if(fenzhong.length == 1 ){
-				fenzhong = '0'+fenzhong
-			}
-			var miaozhong = (new Date().getSeconds()).toString()
-			if(miaozhong.length == 1 ){
-				miaozhong = '0'+miaozhong
-			}
-			var riqishijian = riqi + 'T' +xiaoshi+':' +fenzhong+':'+ miaozhong
-			console.log(riqishijian)
-			//document.getElementById('input3').value = riqi;
-			$("#input3").attr("value",riqi);
-			$("#input1").attr("value",riqishijian);
-			var timess = DateToUnix(String(riqishijian).replace("T", " "))
-			console.log(timess)
-			$("#input2").attr("value",timess);
-		}
+    <script src="/tools/js/datatime.js"></script>
+    <script>
+        $("#btn1").click(function () {
+            $("#input1-1").val(DateToUnix(String($("#input1").val()).replace("T", " ")));
+        });
+        $("#btn2").click(function () {
+            $("#input2-1").val(UnixToDate(Number($("#input2").val()), 2));
+        });
+        $("#btn3").click(function () {
+            setInterval(function () {
+                $("#input3-1").val(DateToUnix($("#input3").val()));
+            }, 1000);
+        });
     </script>
-	<script src="/tools/js/datatime.js"></script>
-<script>
-    $("#btn1").click(function () {
-        $("#input1-1").val(DateToUnix(String($("#input1").val()).replace("T", " ")));
-    });
-    $("#btn2").click(function () {
-        $("#input2-1").val(UnixToDate(Number($("#input2").val()), 2));
-    });
-    $("#btn3").click(function () {
-        setInterval(function () {
-            $("#input3-1").val(DateToUnix($("#input3").val()));
-        }, 1000);
-    });
-</script>
 </body>
 
 </html>

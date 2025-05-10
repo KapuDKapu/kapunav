@@ -85,12 +85,12 @@
     <script src="js/zui.min.js"></script>
     <script src="js/own.js"></script>
     <!-- 底部的一言 -->
-    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <!-- <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
     <script>
         $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
             document.getElementById('hitokoto').innerHTML = data.text;
         });
-    </script>
+    </script> -->
     <!-- <script type="text/javascript">
         $(document).ready(function () {
             console.log('333')
@@ -109,17 +109,17 @@
             console.log('fetch进入了');
             const urll = 'http://api.tanshuapi.com/api/youjia/v1/index?key=6efb96aade813e1bdd4986346ede61b8';
             const othepram = {
-                headers:{
-                    "Content-Type":"application/json; charset=utf-8",
-                    "Access-Control-Allow-Origin":"*"
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Access-Control-Allow-Origin": "*"
                 },
-                method:"GET"
+                method: "GET"
             };
-            fetch(urll,othepram)
-            .then(data=>{
-                console.log('fffffffffff')
-                console.log(data.json())
-            })
+            fetch(urll, othepram)
+                .then(data => {
+                    console.log('fffffffffff')
+                    console.log(data.json())
+                })
         });
     </script>
     <!-- <script type="text/javascript">

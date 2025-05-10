@@ -30,60 +30,62 @@
         <div style="margin-top: 5px;">
             <p id="oneword" align="right"></p>
         </div>
-		<div class="panel">
-    <!-- 内容标题 -->
-    <div class="panel-heading">图片转base64</div>
-    <!-- 内容体 -->
-    <div class="panel-body">
-        <!-- 具体内容 -->
-        <center>
-            <form enctype="multipart/form-data">
-                <div class="">
-                    <div class="">
-                        <button class="btn btn-info" type="button" onclick="xuanzepic()">选择图片</button>
-                        <input onclick="copyUrl2()" value="复制" name="res7" class="btn btn-info" type="button">
-                        <input onclick="Word.value=&#39;&#39;" value="清空" name="res7" class="btn btn-info"
-                            type="button">
-                    </div>
-                    <br>
-                    <div id="aaaa" class="span" style="display:none">
-                        <a href=" javascript:;" class="input-file">
-                        <input class="btn btn-default" accept="image/*" name="upimage" id="upload_file" type="file" value="">
-                        </a>
-                    </div>
-                    <br>
-                    <div class="" id="update_file_label" style="display: none;"></div>
-                    <script type="text/javascript">
-                        document.getElementById("upload_file").onchange = function () {
-                            document.getElementById("update_file_label").innerHTML = this.value;
-                            gen_base64();
-                        };
-                    </script>
-                </div>
-                <div style="padding-left:15px ;padding-right: 15px;">
-                    <textarea id="base64_output" name="Word" class="form-control" rows="5"></textarea>
-                </div>
-                <br>
-                <div class="">
-                    <div class="span">
-                        <input value="还原生成的Base64编码为图片：" class="btn btn-info" type="button" onclick="test_base64();">
-                    </div>
-                    <br>
-                    <div class="span" style="margin-left:10px">
-                        <div class="strong red" id="img_size"> </div>
-                    </div>
-                </div>
-                <div style="width: 50%;height: 50%;">
-                    <img class="img-thumbnail" id="img_prev" src="">
-                </div>
-            </form>
+        <div class="panel">
+            <!-- 内容标题 -->
+            <div class="panel-heading">图片转base64</div>
+            <!-- 内容体 -->
+            <div class="panel-body">
+                <!-- 具体内容 -->
+                <center>
+                    <form enctype="multipart/form-data">
+                        <div class="">
+                            <div class="">
+                                <button class="btn btn-info" type="button" onclick="xuanzepic()">选择图片</button>
+                                <input onclick="copyUrl2()" value="复制" name="res7" class="btn btn-info" type="button">
+                                <input onclick="Word.value=&#39;&#39;" value="清空" name="res7" class="btn btn-info"
+                                    type="button">
+                            </div>
+                            <br>
+                            <div id="aaaa" class="span" style="display:none">
+                                <a href=" javascript:;" class="input-file">
+                                    <input class="btn btn-default" accept="image/*" name="upimage" id="upload_file"
+                                        type="file" value="">
+                                </a>
+                            </div>
+                            <br>
+                            <div class="" id="update_file_label" style="display: none;"></div>
+                            <script type="text/javascript">
+                                document.getElementById("upload_file").onchange = function () {
+                                    document.getElementById("update_file_label").innerHTML = this.value;
+                                    gen_base64();
+                                };
+                            </script>
+                        </div>
+                        <div style="padding-left:15px ;padding-right: 15px;">
+                            <textarea id="base64_output" name="Word" class="form-control" rows="5"></textarea>
+                        </div>
+                        <br>
+                        <div class="">
+                            <div class="span">
+                                <input value="还原生成的Base64编码为图片：" class="btn btn-info" type="button"
+                                    onclick="test_base64();">
+                            </div>
+                            <br>
+                            <div class="span" style="margin-left:10px">
+                                <div class="strong red" id="img_size"> </div>
+                            </div>
+                        </div>
+                        <div style="width: 50%;height: 50%;">
+                            <img class="img-thumbnail" id="img_prev" src="">
+                        </div>
+                    </form>
 
-        </center>
-    </div>
-    <div class="panel-footer">
-        将上传图片转码为base64编码，同时支持解析base64编码为图片。
-    </div>
-</div>
+                </center>
+            </div>
+            <div class="panel-footer">
+                将上传图片转码为base64编码，同时支持解析base64编码为图片。
+            </div>
+        </div>
         <!-- 内容部分 -->
     </div>
 
@@ -105,81 +107,81 @@
     <script src="js/zui.min.js"></script>
     <script src="js/own.js"></script>
     <!-- 底部的一言 -->
-    <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
+    <!-- <script type="text/javascript" src="https://api.7585.net.cn/yan/api.php?format=js&charset=utf-8"></script>
     <script>
         $.getJSON("https://api.7585.net.cn/yan/api.php?format=json", function (data) {
             console.log(data.text);
             document.getElementById('hitokoto').innerHTML = data.text;
         });
+    </script> -->
+    <script type="text/javascript">
+        function $_(id) {
+            return document.getElementById(id);
+        }
+        function gen_base64() {
+            $_('base64_output').value = '';
+            $_('img_size').innerHTML = '';
+            $_('img_prev').src = '';
+            var file = $_('upload_file').files[0];
+            if (!/image\/\w+/.test(file.type)) {
+                alert("请确保文件为图像类型");
+                return false;
+            }
+            r = new FileReader();  //本地预览
+            r.onload = function () {
+                $_('base64_output').value = r.result;
+                $_('img_size').innerHTML = "    图片大小：" + Math.round(r.result.length / 1024 * 1000) / 1000 + " KB";
+            }
+            r.readAsDataURL(file);    //Base64
+        }
+        function test_base64() {
+            $_('img_prev').src = '';
+            //$_('img_prev').src = 'data:image/jpeg;base64,'+$_('base64_output').value;
+            document.getElementById('img_prev').setAttribute('src', $_('base64_output').value);
+        }
+        window.onload = function () {
+            if (typeof (FileReader) === 'undefined') {
+                alert("抱歉，你的浏览器不支持 FileReader，请使用现代浏览器操作！");
+                $_('upload_file').disabled = true;
+            }
+        }
     </script>
-	<script type="text/javascript">
-    function $_(id) {
-        return document.getElementById(id);
-    }
-    function gen_base64() {
-        $_('base64_output').value = '';
-        $_('img_size').innerHTML = '';
-        $_('img_prev').src = '';
-        var file = $_('upload_file').files[0];
-        if (!/image\/\w+/.test(file.type)) {
-            alert("请确保文件为图像类型");
-            return false;
+    <script>
+        function async_load(url) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url;
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
         }
-        r = new FileReader();  //本地预览
-        r.onload = function () {
-            $_('base64_output').value = r.result;
-            $_('img_size').innerHTML = "    图片大小：" + Math.round(r.result.length / 1024 * 1000) / 1000 + " KB";
+        function aysnc_load_js(url) {
+            if (window.attachEvent)
+                window.attachEvent('onload', function () { async_load(url) });
+            else
+                window.addEventListener('load', function () { async_load(url) }, false);
         }
-        r.readAsDataURL(file);    //Base64
-    }
-    function test_base64() {
-        $_('img_prev').src = '';
-        //$_('img_prev').src = 'data:image/jpeg;base64,'+$_('base64_output').value;
-        document.getElementById('img_prev').setAttribute('src', $_('base64_output').value);
-    }
-    window.onload = function () {
-        if (typeof (FileReader) === 'undefined') {
-            alert("抱歉，你的浏览器不支持 FileReader，请使用现代浏览器操作！");
-            $_('upload_file').disabled = true;
+        function async_do_func(func) {
+            if (window.attachEvent)
+                window.attachEvent('onload', func);
+            else
+                window.addEventListener('load', func, false);
         }
-    }
-</script>
-<script>
-    function async_load(url) {
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = url;
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    }
-    function aysnc_load_js(url) {
-        if (window.attachEvent)
-            window.attachEvent('onload', function () { async_load(url) });
-        else
-            window.addEventListener('load', function () { async_load(url) }, false);
-    }
-    function async_do_func(func) {
-        if (window.attachEvent)
-            window.attachEvent('onload', func);
-        else
-            window.addEventListener('load', func, false);
-    }
-    function copyUrl2() {
-        var Url2 = document.getElementById("base64_output");
-        var val = Url2.value;
-        if (val == '') {
-            alert('没有要复制的内容！');
-            return false;
+        function copyUrl2() {
+            var Url2 = document.getElementById("base64_output");
+            var val = Url2.value;
+            if (val == '') {
+                alert('没有要复制的内容！');
+                return false;
+            }
+            Url2.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+            alert("已复制好，可贴粘。");
         }
-        Url2.select(); // 选择对象
-        document.execCommand("Copy"); // 执行浏览器复制命令
-        alert("已复制好，可贴粘。");
-    }
-    function xuanzepic() {
-        $("#upload_file").click();
-    }
-</script>
+        function xuanzepic() {
+            $("#upload_file").click();
+        }
+    </script>
 </body>
 
 </html>
